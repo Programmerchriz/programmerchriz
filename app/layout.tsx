@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import ReponsiveNav from "@/components/Navbar/ReponsiveNav";
 
 const fonts = Inter({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -22,7 +23,10 @@ export default function RootLayout({
       lang="en"
       className={`${fonts.className} h-full antialiased bg-[#0d0d1f] text-white`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ReponsiveNav />
+        {children}
+      </body>
     </html>
   );
 }
