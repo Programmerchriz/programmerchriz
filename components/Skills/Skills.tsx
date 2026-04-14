@@ -61,10 +61,10 @@ const Skills = () => {
       icon: <SiCloudflare className="text-4xl" />,
       name: "Cloudflare",
     },
-    {
-      icon: <FaUsers className="text-4xl" />,
-      name: "Team Leadership",
-    },
+    // {
+    //   icon: <FaLightbulb className="text-4xl" />,
+    //   name: "Team Leadership",
+    // },
     {
       icon: <FiTarget className="text-4xl" />,
       name: "Problem Solving",
