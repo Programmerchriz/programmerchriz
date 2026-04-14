@@ -21,19 +21,21 @@ const Contact = () => {
             <div className="space-y-6 mb-12">
               <div className="flex items-center gap-4 text-cyan-200">
                 <FiPhone className="text-2xl" />
-                <span className="text-white text-lg">+9843582345</span>
+                <span className="text-white text-lg">+2348104948700</span>
               </div>
               <div className="flex items-center gap-4 text-cyan-200">
                 <FiMail className="text-2xl" />
-                <span className="text-white text-lg">hello@example.com</span>
+                <span className="text-white text-lg">
+                  chrisnwachukwu107@gmail.com
+                </span>
               </div>
               <div className="flex items-center gap-4 text-cyan-200">
                 <FiMapPin className="text-2xl" />
-                <span className="text-white text-lg">Dhaka, Bangladesh</span>
+                <span className="text-white text-lg">Lagos, Nigeria</span>
               </div>
             </div>
 
-            <div className="flex gap-4">
+            {/* <div className="flex gap-4">
               <a
                 href="#"
                 className="w-12 h-12 bg-blue-900/50 hover:bg-blue-800 rounded-full flex items-center justify-center text-cyan-200 transition-all"
@@ -58,7 +60,7 @@ const Contact = () => {
               >
                 <FaInstagram className="text-xl" />
               </a>
-            </div>
+            </div> */}
           </div>
 
           {/* Right Side - Form */}

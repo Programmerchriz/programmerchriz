@@ -7,12 +7,12 @@ const Projects = () => {
     {
       image: "/images/p1.png",
       title: "Modern Finance Dashboard UI",
-      link: "#",
+      link: "https://coin-global.vercel.app",
     },
     {
       image: "/images/p2.png",
       title: "Portfolio Website for Creatives",
-      link: "#",
+      link: "https://chris-inventory-management-app.vercel.app",
     },
   ];
 

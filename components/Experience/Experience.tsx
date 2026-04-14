@@ -2,26 +2,33 @@
 
 import { FiBox, FiDatabase } from "react-icons/fi";
 import { SiReact } from "react-icons/si";
+import WorkCard from "../WorkCard/WorkCard";
 
 const Experience = () => {
   const workExperience = [
     {
       icon: <FiBox className="text-3xl" />,
-      title: "Full-Stack Developer",
+      title: "Front End Developer",
       description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat eum laudantium sapiente cumque distinctio.",
+        "Collaborated with a cross-functional team of engineers to develop and maintain complex software applications. Leveraged React.js, TypeScript, and Git to implement efficient development workflows and architected responsive user interfaces ensuring high performance.",
+      period: "September 2024 – January 2025",
+      company: "Apexbyte",
     },
     {
       icon: <SiReact className="text-3xl" />,
-      title: "Front-End Developer",
+      title: "Front End Developer",
       description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat eum laudantium sapiente cumque distinctio.",
+        "Designed and implemented modern user interfaces using React.js and Tailwind CSS. Ensured cross-browser compatibility and mobile responsiveness across diverse platforms. Integrated reusable components strategically to reduce development time.",
+      period: "August 2023 – September 2023",
+      company: "Flip To Tech",
     },
     {
       icon: <FiDatabase className="text-3xl" />,
-      title: "Backend Developer",
+      title: "Junior Developer",
       description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat eum laudantium sapiente cumque distinctio.",
+        "Spearheaded technical instruction for over 100 students focusing on HTML, CSS, and JavaScript fundamentals. Assisted senior developers in debugging, code optimization, and the implementation of new project features.",
+      period: "March 2023 – August 2023",
+      company: "Flip To Tech",
     },
   ];
 
@@ -53,17 +60,14 @@ const Experience = () => {
             </h2>
             <div className="space-y-8">
               {workExperience.map((job, index) => (
-                <div key={index} className="flex gap-4">
-                  <div className="shrink-0 text-cyan-200 mt-1">
-                    {job.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-2">
-                      {job.title}
-                    </h3>
-                    <p className="text-gray-400 text-sm">{job.description}</p>
-                  </div>
-                </div>
+                <WorkCard
+                  key={index}
+                  icon={job.icon}
+                  title={job.title}
+                  description={job.description}
+                  period={job.period}
+                  company={job.company}
+                />
               ))}
             </div>
           </div>

@@ -1,13 +1,13 @@
-import React from 'react';
+
 import Hero from '../Hero/Hero';
-import Services from '../Services/Services';
+// import Services from '../Services/Services';
 import Experience from '../Experience/Experience';
 import Projects from '../Projects/Projects';
 import Skills from '../Skills/Skills';
-import Reviews from '../Reviews/Reviews';
-import Footer from '../Footer/Footer';
+// import Reviews from '../Reviews/Reviews';
 import Contact from '../Contact/Contact';
-import Blogs from '../Blogs/Blogs';
+// import Blogs from '../Blogs/Blogs';
+import Footer from '../Footer/Footer';
 
 const Home = () => {
   return (
