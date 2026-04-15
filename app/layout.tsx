@@ -73,9 +73,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fonts.className} h-full antialiased bg-[#0d0d1f] text-white`}
+      className={`${fonts.className} h-full antialiased bg-[#0d0d1f] text-white overflow-x-hidden`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col overflow-x-hidden">
         <ReponsiveNav />
         {children}
       </body>
