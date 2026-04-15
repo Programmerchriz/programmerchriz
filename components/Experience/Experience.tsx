@@ -3,6 +3,8 @@
 import { FiBox, FiDatabase } from "react-icons/fi";
 import { SiReact } from "react-icons/si";
 import WorkCard from "../WorkCard/WorkCard";
+import { motion } from "framer-motion";
+import { slideInFromUp, staggerContainer } from "@/lib/animations";
 
 const Experience = () => {
   const workExperience = [
@@ -57,47 +59,35 @@ const Experience = () => {
         <div className="grid grid-cols-1 lg:grid-cols-1">
           {/* Work Experience */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-12">
+            <motion.h2
+              initial="hidden"
+              whileInView="visible"
+              variants={slideInFromUp}
+              viewport={{ once: true, margin: "-100px" }}
+              className="text-3xl md:text-4xl font-bold text-center text-white mb-12"
+            >
               My Work <span className="text-cyan-200">Experience</span>
-            </h2>
-            <div className="space-y-8">
+            </motion.h2>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              variants={staggerContainer}
+              viewport={{ once: true, margin: "-100px" }}
+              className="space-y-8"
+            >
               {workExperience.map((job, index) => (
-                <WorkCard
-                  key={index}
-                  icon={job.icon}
-                  title={job.title}
-                  description={job.description}
-                  period={job.period}
-                  company={job.company}
-                />
+                <motion.div key={index} variants={slideInFromUp}>
+                  <WorkCard
+                    icon={job.icon}
+                    title={job.title}
+                    description={job.description}
+                    period={job.period}
+                    company={job.company}
+                  />
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
-
-          {/* Education */}
-          {/* <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-12">
-              My <span className="text-cyan-200">Education</span>
-            </h2>
-            <div className="space-y-8">
-              {education.map((edu, index) => (
-                <div key={index} className="flex gap-4">
-                  <div className="flex-shrink-0 text-cyan-200 mt-1">
-                    {edu.icon}
-                  </div>
-                  <div className="flex-1">
-                    <div className="inline-block bg-blue-900/30 px-4 py-2 rounded-full text-white text-sm mb-2">
-                      {edu.period}
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-2 block">
-                      {edu.title}
-                    </h3>
-                    <p className="text-gray-400 text-sm">{edu.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div> */}
         </div>
       </div>
     </div>

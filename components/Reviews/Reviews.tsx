@@ -1,6 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
+import {
+  slideInFromUp,
+  staggerContainer,
+  slideInFromLeft,
+  slideInFromRight,
+} from "@/lib/animations";
 
 const Reviews = () => {
   const reviews = [
@@ -30,19 +37,36 @@ const Reviews = () => {
   return (
     <div className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-center text-3xl md:text-5xl font-bold text-white mb-16">
+        <motion.h1
+          initial="hidden"
+          whileInView="visible"
+          variants={slideInFromUp}
+          viewport={{ once: true, margin: "-100px" }}
+          className="text-center text-3xl md:text-5xl font-bold text-white mb-16"
+        >
           Kind words from satisfied <br />
           <span className="text-cyan-200">clients</span>
-        </h1>
+        </motion.h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={staggerContainer}
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {reviews.map((review, index) => (
-            <div
+            <motion.div
               key={index}
+              variants={slideInFromUp}
+              whileHover={{ y: -5 }}
               className="bg-gray-900/50 rounded-lg p-8 hover:bg-gray-900/80 transition-all duration-300"
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="relative w-14 h-14">
+                <motion.div
+                  className="relative w-14 h-14"
+                  whileHover={{ scale: 1.1 }}
+                >
                   <Image
                     src={review.image}
                     alt={review.name}
@@ -50,7 +74,7 @@ const Reviews = () => {
                     height={56}
                     className="rounded-full object-cover"
                   />
-                </div>
+                </motion.div>
                 <div>
                   <h3 className="text-cyan-200 font-bold">{review.name}</h3>
                   <p className="text-gray-400 text-sm">{review.title}</p>
@@ -59,9 +83,9 @@ const Reviews = () => {
               <p className="text-gray-300 text-sm leading-relaxed">
                 &quot;{review.review}&quot;
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

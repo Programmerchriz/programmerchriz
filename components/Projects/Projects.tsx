@@ -1,6 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
+import {
+  slideInFromUp,
+  slideInFromLeft,
+  slideInFromRight,
+  staggerContainer,
+} from "@/lib/animations";
 
 const Projects = () => {
   const projects = [
@@ -17,19 +24,30 @@ const Projects = () => {
   ];
 
   return (
-    <div
-      id="projects"
-      className="py-20 px-10">
+    <div id="projects" className="py-20 px-10">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-center text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-16">
+        <motion.h1
+          initial="hidden"
+          whileInView="visible"
+          variants={slideInFromUp}
+          viewport={{ once: true, margin: "-100px" }}
+          className="text-center text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-16"
+        >
           A small selection of recent <br />
           <span className="text-cyan-200">projects</span>
-        </h1>
+        </motion.h1>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={staggerContainer}
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+        >
           {projects.map((project, index) => (
-            <div
+            <motion.div
               key={index}
+              variants={index === 0 ? slideInFromLeft : slideInFromRight}
               className="group relative rounded-lg overflow-hidden bg-gray-900/50 hover:bg-gray-900 transition-all duration-300"
             >
               <div className="relative aspect-video overflow-hidden">
@@ -47,14 +65,16 @@ const Projects = () => {
                 </h3>
                 <a
                   href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-cyan-200 hover:text-cyan-100 transition-colors font-medium"
                 >
                   View Project →
                 </a>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

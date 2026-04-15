@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { slideInFromUp, staggerContainer } from "@/lib/animations";
 
 const Blogs = () => {
   const blogs = [
@@ -27,14 +29,28 @@ const Blogs = () => {
   return (
     <div className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-center text-3xl md:text-5xl font-bold text-white mb-16">
+        <motion.h1
+          initial="hidden"
+          whileInView="visible"
+          variants={slideInFromUp}
+          viewport={{ once: true, margin: "-100px" }}
+          className="text-center text-3xl md:text-5xl font-bold text-white mb-16"
+        >
           My latest <span className="text-cyan-200">Blogs</span>
-        </h1>
+        </motion.h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={staggerContainer}
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {blogs.map((blog, index) => (
-            <div
+            <motion.div
               key={index}
+              variants={slideInFromUp}
+              whileHover={{ y: -10 }}
               className="group rounded-lg overflow-hidden bg-gray-900/50 hover:bg-gray-900 transition-all duration-300 cursor-pointer"
             >
               <div className="relative aspect-video overflow-hidden">
@@ -53,18 +69,19 @@ const Blogs = () => {
                 </h3>
                 <div className="flex gap-2 flex-wrap">
                   {blog.tags.map((tag, i) => (
-                    <span
+                    <motion.span
                       key={i}
+                      whileHover={{ scale: 1.05 }}
                       className="px-3 py-1 bg-blue-900/50 text-cyan-200 rounded-full text-xs font-medium"
                     >
                       {tag}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );
