@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/images/s1-thumbnail-premium.jpg",
   },
 };
 
