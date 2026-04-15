@@ -2,10 +2,73 @@
 
 import { FiPhone, FiMail, FiMapPin } from "react-icons/fi";
 import { FaFacebook, FaYoutube, FaTwitter, FaInstagram } from "react-icons/fa";
+import { useState } from "react";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    mobileNumber: "",
+    message: "",
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [statusMessage, setStatusMessage] = useState("");
+
+  // Handle input changes
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setStatus("idle");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus("success");
+        setStatusMessage("Message sent successfully! I'll get back to you soon.");
+        setFormData({
+          name: "",
+          email: "",
+          mobileNumber: "",
+          message: "",
+        });
+      } else {
+        setStatus("error");
+        setStatusMessage(data.error || "Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      setStatus("error");
+      setStatusMessage("An error occurred. Please try again.");
+      console.error("Error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
-    <div className="py-20 px-4">
+    <div
+      id="contact"
+      className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left Side */}
@@ -65,32 +128,64 @@ const Contact = () => {
 
           {/* Right Side - Form */}
           <div className="bg-gray-900/50 rounded-lg p-8">
-            <form className="space-y-6">
+            {/* Status Messages */}
+            {status === "success" && (
+              <div className="mb-6 p-4 bg-green-900/30 border border-green-500 rounded-lg text-green-400">
+                {statusMessage}
+              </div>
+            )}
+            {status === "error" && (
+              <div className="mb-6 p-4 bg-red-900/30 border border-red-500 rounded-lg text-red-400">
+                {statusMessage}
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-6">
               <input
                 type="text"
+                name="name"
                 placeholder="Name"
-                className="w-full bg-blue-900/30 border border-blue-800 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-200 transition-colors"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                className="w-full bg-blue-900/30 border border-blue-800 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-200 transition-colors disabled:opacity-50"
+                disabled={isLoading}
               />
               <input
                 type="email"
+                name="email"
                 placeholder="Email Address"
-                className="w-full bg-blue-900/30 border border-blue-800 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-200 transition-colors"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="w-full bg-blue-900/30 border border-blue-800 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-200 transition-colors disabled:opacity-50"
+                disabled={isLoading}
               />
               <input
                 type="tel"
+                name="mobileNumber"
                 placeholder="Mobile Number"
-                className="w-full bg-blue-900/30 border border-blue-800 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-200 transition-colors"
+                value={formData.mobileNumber}
+                onChange={handleChange}
+                className="w-full bg-blue-900/30 border border-blue-800 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-200 transition-colors disabled:opacity-50"
+                disabled={isLoading}
               />
               <textarea
+                name="message"
                 placeholder="Your Message"
                 rows={5}
-                className="w-full bg-blue-900/30 border border-blue-800 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-200 transition-colors resize-none"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                className="w-full bg-blue-900/30 border border-blue-800 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-200 transition-colors resize-none disabled:opacity-50"
+                disabled={isLoading}
               ></textarea>
               <button
                 type="submit"
-                className="w-full bg-blue-800 hover:bg-blue-900 text-white font-semibold py-3 px-6 rounded-full transition-colors"
+                disabled={isLoading}
+                className="w-full bg-blue-800 hover:bg-blue-900 disabled:bg-blue-800 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-full transition-colors"
               >
-                Send Message
+                {isLoading ? "Sending..." : "Send Message"}
               </button>
             </form>
           </div>

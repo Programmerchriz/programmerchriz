@@ -6,34 +6,34 @@ export const NAV_LINKS = [
     url: "/",
     label: "Home",
   },
-  {
-    id: 2,
-    url: "#",
-    label: "Services",
-  },
+  // {
+  //   id: 2,
+  //   url: "#",
+  //   label: "Services",
+  // },
   {
     id: 3,
-    url: "#",
+    url: "#experience",
     label: "Resume",
   },
   {
     id: 4,
-    url: "#",
+    url: "#projects",
     label: "Works",
   },
   {
     id: 5,
-    url: "#",
+    url: "#skills",
     label: "Skills",
   },
-  {
-    id: 6,
-    url: "#",
-    label: "Testimonials",
-  },
+  // {
+  //   id: 6,
+  //   url: "#",
+  //   label: "Testimonials",
+  // },
   {
     id: 7,
-    url: "#",
+    url: "#contact",
     label: "Contact",
   },
 ];

@@ -6,18 +6,20 @@ const Projects = () => {
   const projects = [
     {
       image: "/images/p1.png",
-      title: "Modern Finance Dashboard UI",
+      title: "Modern Finance Dashboard",
       link: "https://coin-global.vercel.app",
     },
     {
       image: "/images/p2.png",
-      title: "Portfolio Website for Creatives",
+      title: "Inventory Management App",
       link: "https://chris-inventory-management-app.vercel.app",
     },
   ];
 
   return (
-    <div className="py-20 px-10">
+    <div
+      id="projects"
+      className="py-20 px-10">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-center text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-16">
           A small selection of recent <br />
