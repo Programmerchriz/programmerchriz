@@ -49,6 +49,8 @@ const Hero = () => {
               options={{
                 strings: [
                   " Frontend Developer",
+                  " Backend Developer",
+                  " Fullstack Developer",
                   " Web Developer",
                   " Software Engineer",
                 ],

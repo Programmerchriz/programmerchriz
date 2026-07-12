@@ -5,10 +5,13 @@ import {
   SiJavascript,
   SiReact,
   SiNextdotjs,
+  SiNodedotjs,
+  SiExpress,
   SiTailwindcss,
   SiGithub,
   SiPostgresql,
   SiPrisma,
+  SiBetterauth,
   SiDocker,
   SiCloudflare,
 } from "react-icons/si";
@@ -20,8 +23,8 @@ import { slideInFromUp, staggerContainer, scaleIn } from "@/lib/animations";
 const Skills = () => {
   const skills = [
     {
-      icon: <SiJavascript className="text-4xl" />,
-      name: "JavaScript",
+      icon: <SiTypescript className="text-4xl" />,
+      name: "TypeScript",
     },
     {
       icon: <SiReact className="text-4xl" />,
@@ -32,8 +35,20 @@ const Skills = () => {
       name: "Next.js",
     },
     {
-      icon: <SiTypescript className="text-4xl" />,
-      name: "TypeScript",
+      icon: <SiNodedotjs className="text-4xl" />,
+      name: "Node.js",
+    },
+    {
+      icon: <SiExpress className="text-4xl" />,
+      name: "Express",
+    },
+    {
+      icon: <SiBetterauth className="text-4xl" />,
+      name: "Better Auth",
+    },
+    {
+      icon: <SiJavascript className="text-4xl" />,
+      name: "JavaScript",
     },
     {
       icon: <SiTailwindcss className="text-4xl" />,
