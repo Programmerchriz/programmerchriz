@@ -16,6 +16,8 @@ export const metadata: Metadata = {
   keywords: [
     "Software Engineer",
     "Frontend Developer",
+    "Backend Developer",
+    "Fullstack Developer",
     "React.js",
     "Next.js",
     "TypeScript",
@@ -29,19 +31,19 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://programmerchriz.vercel.app",
     siteName: "Christian Nwachukwu - Software Engineer",
-    title: "Christian Nwachukwu | Software Engineer & Frontend Developer",
+    title: "Christian Nwachukwu | Software Engineer & Fullstack Developer",
     description:
       "Dedicated Software Engineer with over 4 years of experience specializing in front-end development.",
     images: [
       {
-        url: "/images/s1-og.jpg",
+        url: "/images/s1-og-premium.jpg",
         width: 1200,
         height: 630,
         alt: "Christian Nwachukwu",
         type: "image/jpeg",
       },
       {
-        url: "/images/s1-thumbnail.jpg",
+        url: "/images/s1-thumbnail-premium.jpg",
         width: 400,
         height: 400,
         alt: "Christian Nwachukwu",
@@ -55,7 +57,7 @@ export const metadata: Metadata = {
     description:
       "Dedicated Software Engineer with over 4 years of experience specializing in front-end development.",
     creator: "@Programmerchriz",
-    images: ["/images/s1-twitter.jpg"],
+    images: ["/images/s1-twitter-premium.jpg"],
   },
   robots: {
     index: true,
