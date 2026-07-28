@@ -76,7 +76,7 @@ const Contact = () => {
   };
 
   return (
-    <div id="contact" className="py-20 px-4">
+    <div id="contact" className="py-0 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left Side */}
