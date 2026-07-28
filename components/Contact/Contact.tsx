@@ -1,13 +1,13 @@
 "use client";
 
 import { FiPhone, FiMail, FiMapPin } from "react-icons/fi";
-import { FaFacebook, FaYoutube, FaTwitter, FaInstagram } from "react-icons/fa";
+// import { FaFacebook, FaYoutube, FaTwitter, FaInstagram } from "react-icons/fa";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   slideInFromLeft,
   slideInFromRight,
-  slideInFromUp,
+  // slideInFromUp,
 } from "@/lib/animations";
 
 const Contact = () => {
