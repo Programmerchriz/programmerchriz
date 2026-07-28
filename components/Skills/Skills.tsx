@@ -14,6 +14,9 @@ import {
   SiBetterauth,
   SiDocker,
   SiCloudflare,
+  SiPython,
+  SiFastapi,
+  SiSqlalchemy
 } from "react-icons/si";
 import { FaDatabase, FaUsers, FaLightbulb } from "react-icons/fa";
 import { FiTarget } from "react-icons/fi";
@@ -35,28 +38,16 @@ const Skills = () => {
       name: "Next.js",
     },
     {
+      icon: <SiTailwindcss className="text-4xl" />,
+      name: "TailwindCSS",
+    },
+    {
       icon: <SiNodedotjs className="text-4xl" />,
       name: "Node.js",
     },
     {
       icon: <SiExpress className="text-4xl" />,
       name: "Express",
-    },
-    {
-      icon: <SiBetterauth className="text-4xl" />,
-      name: "Better Auth",
-    },
-    {
-      icon: <SiJavascript className="text-4xl" />,
-      name: "JavaScript",
-    },
-    {
-      icon: <SiTailwindcss className="text-4xl" />,
-      name: "TailwindCSS",
-    },
-    {
-      icon: <SiGithub className="text-4xl" />,
-      name: "Git/Github",
     },
     {
       icon: <FaDatabase className="text-4xl" />,
@@ -71,8 +62,32 @@ const Skills = () => {
       name: "Prisma",
     },
     {
+      icon: <SiPython className="text-4xl" />,
+      name: "Python",
+    },
+    {
+      icon: <SiFastapi className="text-4xl" />,
+      name: "FastAPI",
+    },
+    {
+      icon: <SiSqlalchemy className="text-4xl" />,
+      name: "SQLAlchemy",
+    },
+    {
+      icon: <SiJavascript className="text-4xl" />,
+      name: "JavaScript",
+    },
+    {
+      icon: <SiGithub className="text-4xl" />,
+      name: "Git/Github",
+    },
+    {
       icon: <SiDocker className="text-4xl" />,
       name: "Docker",
+    },
+    {
+      icon: <SiBetterauth className="text-4xl" />,
+      name: "Better Auth",
     },
     {
       icon: <SiCloudflare className="text-4xl" />,
@@ -89,7 +104,7 @@ const Skills = () => {
   ];
 
   return (
-    <div id="skills" className="py-20 px-4">
+    <div id="skills" className="py-20 pb-0 px-4">
       <div className="max-w-6xl mx-auto">
         <motion.h1
           initial="hidden"
