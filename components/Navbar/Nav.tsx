@@ -61,7 +61,7 @@ const Nav = ({ openNav }: NavProps) => {
         <div className="flex items-center space-x-4">
           {/* CV button */}
           <Link
-            href="/pdf/Chris-e.pdf"
+            href="/pdf/Chris-Software-Engineer.pdf"
             download="Christian-Nwachukwu-CV.pdf"
             className="px-8 py-3.5 text-sm cursor-pointer rounded-lg bg-blue-800 hover:bg-blue-900 disabled:cursor-not-allowed disabled:opacity-40 transition-all duration-300 text-white flex items-center space-x-2"
           >

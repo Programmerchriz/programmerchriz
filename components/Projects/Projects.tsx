@@ -2,65 +2,24 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   projectCard,
   slideInFromUp,
   staggerContainer,
 } from "@/lib/animations";
-
-interface Project {
-  images: string[];
-  title: string;
-  link: string;
-}
-
-const projects: Project[] = [
-  {
-    images: [
-      "/images/career-compass-1.png",
-      "/images/career-compass-2.png",
-      "/images/career-compass-3.png",
-    ],
-    title: "Career Guidance App",
-    link: "https://careeer-compasss.vercel.app",
-  },
-  // {
-  //   images: [
-  //     "/images/p2.png",
-  //     "/images/p2-2.png",
-  //     "/images/p2-3.png",
-  //   ],
-  //   title: "Vehicle License Plate Recognition System",
-  //   link: "https://vehicle-license-plate.vercel.app",
-  // },
-  {
-    images: [
-      "/images/coinglobal-1.png",
-      "/images/coinglobal-2.png",
-      "/images/coinglobal-3.png",
-      "/images/coinglobal-4.png",
-    ],
-    title: "Cryptocurrency Finance App",
-    link: "https://coin-global.vercel.app",
-  },
-  {
-    images: [
-      "/images/inventory-1.png",
-      "/images/inventory-2.png",
-      "/images/inventory-3.png",
-    ],
-    title: "Inventory Management App",
-    link: "https://chris-inventory-management-app.vercel.app",
-  },
-];
+import { projects } from "@/lib/data/projects";
 
 interface ProjectCardProps {
-  project: Project;
+  project: (typeof projects)[number];
   index: number;
 }
 
-const ProjectCard = ({ project, index }: ProjectCardProps) => {
+const ProjectCard = ({
+  project,
+  index,
+}: ProjectCardProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -83,15 +42,24 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
     <motion.article
       custom={index}
       variants={projectCard}
-      className="group relative overflow-hidden rounded-xl border border-white/10 bg-gray-900/50 shadow-lg shadow-black/20 transition-colors duration-300 hover:bg-gray-900"
+      className="group relative overflow-hidden rounded-xl border border-white/10 bg-gray-900/50 shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-200/20 hover:bg-gray-900 hover:shadow-xl"
     >
       <div className="relative aspect-video overflow-hidden bg-gray-950">
         <AnimatePresence initial={false}>
           <motion.div
             key={project.images[currentImageIndex]}
-            initial={{ x: "100%", opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: "-100%", opacity: 0 }}
+            initial={{
+              x: "100%",
+              opacity: 0,
+            }}
+            animate={{
+              x: 0,
+              opacity: 1,
+            }}
+            exit={{
+              x: "-100%",
+              opacity: 0,
+            }}
             transition={{
               x: {
                 duration: 0.65,
@@ -107,14 +75,14 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
               src={project.images[currentImageIndex]}
               alt={`${project.title} preview ${currentImageIndex + 1}`}
               fill
-              sizes="(max-width: 1024px) 100vw, 33vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
               priority={index === 0 && currentImageIndex === 0}
             />
           </motion.div>
         </AnimatePresence>
 
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
         {project.images.length > 1 && (
           <div className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 items-center gap-1.5">
@@ -124,7 +92,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                 type="button"
                 onClick={() => setCurrentImageIndex(imageIndex)}
                 aria-label={`Show ${project.title} image ${imageIndex + 1}`}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
+                className={`h-1.5 cursor-pointer rounded-full transition-all duration-300 ${
                   currentImageIndex === imageIndex
                     ? "w-6 bg-cyan-200"
                     : "w-1.5 bg-white/60 hover:bg-white"
@@ -136,21 +104,23 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       </div>
 
       <div className="p-6">
-        <h3 className="mb-2 text-xl font-bold text-white">
+        <h3 className="text-xl font-bold text-white">
           {project.title}
         </h3>
 
-        <a
-          href={project.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center font-medium text-cyan-200 transition-colors hover:text-cyan-100"
+        <p className="mt-3 line-clamp-3 text-sm leading-6 text-gray-400">
+          {project.shortDescription}
+        </p>
+
+        <Link
+          href={`/projects/${project.slug}`}
+          className="mt-5 inline-flex items-center font-medium text-cyan-200 transition-colors hover:text-cyan-100"
         >
-          View Project
+          View project
           <span className="ml-1 transition-transform duration-300 group-hover:translate-x-1">
             →
           </span>
-        </a>
+        </Link>
       </div>
     </motion.article>
   );
@@ -158,7 +128,10 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
 
 const Projects = () => {
   return (
-    <section id="projects" className="overflow-hidden px-5 py-20 sm:px-10">
+    <section
+      id="projects"
+      className="overflow-hidden px-5 py-20 sm:px-10"
+    >
       <div className="mx-auto max-w-6xl">
         <motion.h2
           initial="hidden"
@@ -170,7 +143,7 @@ const Projects = () => {
           }}
           className="mb-16 text-center text-3xl font-bold text-white md:text-4xl xl:text-5xl"
         >
-          <span className="text-cyan-200">Recent Projects</span>
+          Recent <span className="text-cyan-200">Projects</span>
         </motion.h2>
 
         <motion.div
@@ -185,7 +158,7 @@ const Projects = () => {
         >
           {projects.map((project, index) => (
             <ProjectCard
-              key={project.title}
+              key={project.slug}
               project={project}
               index={index}
             />
