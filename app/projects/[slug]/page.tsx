@@ -32,15 +32,15 @@ export const generateMetadata = async ({
 
   if (!project) {
     return {
-      title: "Project Not Found | Christian Nwachukwu",
+      title: "Project Not Found | Chris Nwachukwu",
     };
   }
 
   return {
-    title: `${project.title} | Christian Nwachukwu`,
+    title: `${project.title} | Chris Nwachukwu`,
     description: project.shortDescription,
     openGraph: {
-      title: `${project.title} | Christian Nwachukwu`,
+      title: `${project.title} | Chris Nwachukwu`,
       description: project.shortDescription,
       images: [
         {

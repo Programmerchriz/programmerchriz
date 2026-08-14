@@ -10,7 +10,7 @@ const fonts = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Christian Nwachukwu | Software Engineer & Frontend Developer",
+  title: "Chris Nwachukwu | Software Engineer & Fullstack Engineer",
   description:
     "Dedicated Software Engineer with over 4 years of experience specializing in front-end development. Building high-performance web applications with React.js, Next.js, and TypeScript.",
   keywords: [
@@ -24,14 +24,14 @@ export const metadata: Metadata = {
     "Web Developer",
     "Portfolio",
   ],
-  authors: [{ name: "Christian Nwachukwu" }],
-  creator: "Christian Nwachukwu",
+  authors: [{ name: "Chris Nwachukwu" }],
+  creator: "Chris Nwachukwu",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://programmerchriz.vercel.app",
-    siteName: "Christian Nwachukwu - Software Engineer",
-    title: "Christian Nwachukwu | Software Engineer & Fullstack Developer",
+    siteName: "Chris Nwachukwu - Software Engineer",
+    title: "Chris Nwachukwu | Software Engineer & Fullstack Developer",
     description:
       "Dedicated Software Engineer with over 4 years of experience specializing in front-end development.",
     images: [
@@ -39,23 +39,23 @@ export const metadata: Metadata = {
         url: "/images/s1-og-premium.jpg",
         width: 1200,
         height: 630,
-        alt: "Christian Nwachukwu",
+        alt: "Chris Nwachukwu",
         type: "image/jpeg",
       },
       {
-        url: "/images/s1-thumbnail-premium.jpg",
+        url: "/images/headline-2.jpg",
         width: 400,
         height: 400,
-        alt: "Christian Nwachukwu",
+        alt: "Chris Nwachukwu",
         type: "image/jpeg",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Christian Nwachukwu | Software Engineer & Frontend Developer",
+    title: "Chris Nwachukwu | Software Engineer & Fullstack Engineer",
     description:
-      "Dedicated Software Engineer with over 4 years of experience specializing in front-end development.",
+      "Results-driven Software Engineer with over 4 years of experience building and shipping scalable full-stack web applications. Experienced with the TypeScript and Python ecosystems (React, Next.js, Node.js, FastAPI), delivering production-ready features from frontend to backend while improving system performance by up to 35%. Passionate about clean architecture, reliable software, and solving real customer problems",
     creator: "@Programmerchriz",
     images: ["/images/s1-twitter-premium.jpg"],
   },

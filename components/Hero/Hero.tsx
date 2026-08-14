@@ -19,7 +19,7 @@ const Hero = () => {
       <div className="relative 2-10 flex flex-col items-center">
         <motion.div initial="hidden" animate="visible" variants={scaleIn}>
           <Image
-            src="/images/s1.jpg"
+            src="/images/headline.jpg"
             alt="heroimage"
             width={150}
             height={150}
@@ -43,7 +43,7 @@ const Hero = () => {
           transition={{ delay: 0.2 }}
           className="mt-5 text-sm px-2 text-center sm:text-2xl font-medium flex items-center"
         >
-          Hi! I&apos;m Chris - A Passionate
+          Hi, I&apos;m Chris. I&apos;m a passionate
           <span className="text-cyan-200 font-bold">
             <Typewriter
               options={{
