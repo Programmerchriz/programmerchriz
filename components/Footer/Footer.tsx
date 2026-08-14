@@ -12,7 +12,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <p className="text-gray-400 text-center md:text-left">
-              Christian Nwachukwu - Personal Portfolio Website
+              Chris Nwachukwu
             </p>
           </div>
 
