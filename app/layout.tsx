@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 
     images: [
       {
-        url: "/images/s1-og-premium.jpg",
+        url: "/images/s1-og-premium-img.jpg",
         width: 1200,
         height: 630,
         alt: "Chris Nwachukwu - Software Engineer",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
 
     images: [
       {
-        url: "/images/s1-twitter-premium.jpg",
+        url: "/images/s1-twitter-premium-img.jpg",
         width: 1200,
         height: 630,
         alt: "Chris Nwachukwu - Software Engineer",
@@ -78,9 +78,9 @@ export const metadata: Metadata = {
   },
 
   icons: {
-    icon: "/images/s1-thumbnail-premium.jpg",
-    shortcut: "/images/s1-thumbnail-premium.jpg",
-    apple: "/images/s1-thumbnail-premium.jpg",
+    icon: "/images/s1-thumbnail-premium-img.jpg",
+    shortcut: "/images/s1-thumbnail-premium-img.jpg",
+    apple: "/images/s1-thumbnail-premium-img.jpg",
   },
 };
 
