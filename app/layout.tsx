@@ -10,9 +10,12 @@ const fonts = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.programmerchriz.xyz"),
   title: "Chris Nwachukwu | Software Engineer & Fullstack Engineer",
+
   description:
-    "Dedicated Software Engineer with over 4 years of experience specializing in front-end development. Building high-performance web applications with React.js, Next.js, and TypeScript.",
+    "Results-driven Software Engineer with over 4 years of experience building and shipping scalable full-stack web applications using TypeScript, React, Next.js, Node.js, Python, and FastAPI.",
+
   keywords: [
     "Software Engineer",
     "Frontend Developer",
@@ -21,50 +24,63 @@ export const metadata: Metadata = {
     "React.js",
     "Next.js",
     "TypeScript",
+    "Node.js",
+    "Python",
     "Web Developer",
     "Portfolio",
   ],
+
   authors: [{ name: "Chris Nwachukwu" }],
   creator: "Chris Nwachukwu",
+
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://programmerchriz.vercel.app",
+    url: "https://www.programmerchriz.xyz",
     siteName: "Chris Nwachukwu - Software Engineer",
-    title: "Chris Nwachukwu | Software Engineer & Fullstack Developer",
+
+    title: "Chris Nwachukwu | Software Engineer & Fullstack Engineer",
     description:
-      "Dedicated Software Engineer with over 4 years of experience specializing in front-end development.",
+      "Results-driven Software Engineer with over 4 years of experience building and shipping scalable full-stack web applications using TypeScript, React, Next.js, Node.js, Python, and FastAPI.",
+
     images: [
       {
         url: "/images/s1-og-premium.jpg",
         width: 1200,
         height: 630,
-        alt: "Chris Nwachukwu",
-        type: "image/jpeg",
-      },
-      {
-        url: "/images/headline-2.jpg",
-        width: 400,
-        height: 400,
-        alt: "Chris Nwachukwu",
+        alt: "Chris Nwachukwu - Software Engineer",
         type: "image/jpeg",
       },
     ],
   },
+
   twitter: {
     card: "summary_large_image",
     title: "Chris Nwachukwu | Software Engineer & Fullstack Engineer",
+
     description:
-      "Results-driven Software Engineer with over 4 years of experience building and shipping scalable full-stack web applications. Experienced with the TypeScript and Python ecosystems (React, Next.js, Node.js, FastAPI), delivering production-ready features from frontend to backend while improving system performance by up to 35%. Passionate about clean architecture, reliable software, and solving real customer problems",
+      "Results-driven Software Engineer with over 4 years of experience building and shipping scalable full-stack web applications using TypeScript, React, Next.js, Node.js, Python, and FastAPI.",
     creator: "@Programmerchriz",
-    images: ["/images/s1-twitter-premium.jpg"],
+
+    images: [
+      {
+        url: "/images/s1-twitter-premium.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Chris Nwachukwu - Software Engineer",
+      },
+    ],
   },
+
   robots: {
     index: true,
     follow: true,
   },
+
   icons: {
     icon: "/images/s1-thumbnail-premium.jpg",
+    shortcut: "/images/s1-thumbnail-premium.jpg",
+    apple: "/images/s1-thumbnail-premium.jpg",
   },
 };
 
