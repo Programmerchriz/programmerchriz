@@ -21,7 +21,7 @@ const ScrollToTop = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
     });
   };
 
@@ -29,7 +29,9 @@ const ScrollToTop = () => {
     <div className="fixed bottom-4 right-4">
       {isVisible && (
         <button
-          className="bg-blue-950/60 cursor-pointer text-white rounded-full w-12 h-12 flex items-center justify-center focus:outline-none"
+          type="button"
+          aria-label="Scroll to top"
+          className="bg-surface border border-line cursor-pointer text-ink rounded-full w-12 h-12 flex items-center justify-center"
           onClick={scrollToTop}
         >
           <FaArrowUp />

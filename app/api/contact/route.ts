@@ -1,8 +1,6 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: NextRequest) {
   try {
     const { name, email, mobileNumber, message } = await request.json();
@@ -14,6 +12,15 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    // Initialize at request time so builds and local previews need no mail credentials.
+    if (!process.env.RESEND_API_KEY) {
+      return NextResponse.json(
+        { error: "Contact form is temporarily unavailable. Please email me directly." },
+        { status: 503 }
+      );
+    }
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     // Send email to you
     const response = await resend.emails.send({

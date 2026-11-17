@@ -111,9 +111,9 @@ const Skills = () => {
           whileInView="visible"
           variants={slideInFromUp}
           viewport={{ once: true, margin: "-100px" }}
-          className="text-center text-3xl md:text-5xl font-bold text-white mb-4"
+          className="text-center text-3xl md:text-5xl font-bold text-ink mb-4"
         >
-          My <span className="text-cyan-200">Skills</span>
+          My <span className="text-accent">Skills</span>
         </motion.h1>
 
         <motion.div
@@ -131,12 +131,12 @@ const Skills = () => {
               className="flex flex-col items-center text-center cursor-pointer"
             >
               <motion.div
-                className="text-cyan-200 mb-4"
+                className="text-accent mb-4"
                 whileHover={{ rotateY: 10 }}
               >
                 {skill.icon}
               </motion.div>
-              <p className="text-white font-medium text-sm">{skill.name}</p>
+              <p className="text-ink font-medium text-sm">{skill.name}</p>
             </motion.div>
           ))}
         </motion.div>

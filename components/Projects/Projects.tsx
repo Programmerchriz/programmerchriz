@@ -10,6 +10,7 @@ import {
   staggerContainer,
 } from "@/lib/animations";
 import { projects } from "@/lib/data/projects";
+import useReducedMotion from "@/components/Helper/useReducedMotion";
 
 interface ProjectCardProps {
   project: (typeof projects)[number];
@@ -21,9 +22,10 @@ const ProjectCard = ({
   index,
 }: ProjectCardProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
-    if (project.images.length <= 1) {
+    if (reducedMotion || project.images.length <= 1) {
       return;
     }
 
@@ -36,15 +38,15 @@ const ProjectCard = ({
     return () => {
       window.clearInterval(intervalId);
     };
-  }, [project.images.length]);
+  }, [project.images.length, reducedMotion]);
 
   return (
     <motion.article
       custom={index}
       variants={projectCard}
-      className="group relative overflow-hidden rounded-xl border border-white/10 bg-gray-900/50 shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-200/20 hover:bg-gray-900 hover:shadow-xl"
+      className="group relative overflow-hidden rounded-xl border border-line bg-surface shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:bg-surface-hover hover:shadow-xl"
     >
-      <div className="relative aspect-video overflow-hidden bg-gray-950">
+      <div className="relative aspect-video overflow-hidden bg-raised">
         <AnimatePresence initial={false}>
           <motion.div
             key={project.images[currentImageIndex]}
@@ -104,17 +106,17 @@ const ProjectCard = ({
       </div>
 
       <div className="p-6">
-        <h3 className="text-xl font-bold text-white">
+        <h3 className="text-xl font-bold text-ink">
           {project.title}
         </h3>
 
-        <p className="mt-3 line-clamp-3 text-sm leading-6 text-gray-400">
+        <p className="mt-3 line-clamp-3 text-sm leading-6 text-muted">
           {project.shortDescription}
         </p>
 
         <Link
           href={`/projects/${project.slug}`}
-          className="mt-5 inline-flex items-center font-medium text-cyan-200 transition-colors hover:text-cyan-100"
+          className="mt-5 inline-flex items-center font-medium text-accent transition-colors hover:text-accent-hover"
         >
           View project
           <span className="ml-1 transition-transform duration-300 group-hover:translate-x-1">
@@ -141,9 +143,9 @@ const Projects = () => {
             once: true,
             amount: 0.3,
           }}
-          className="mb-16 text-center text-3xl font-bold text-white md:text-4xl xl:text-5xl"
+          className="mb-16 text-center text-3xl font-bold text-ink md:text-4xl xl:text-5xl"
         >
-          Recent <span className="text-cyan-200">Projects</span>
+          Recent <span className="text-accent">Projects</span>
         </motion.h2>
 
         <motion.div

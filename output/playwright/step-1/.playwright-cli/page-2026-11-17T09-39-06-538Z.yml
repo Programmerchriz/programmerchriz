@@ -1,0 +1,229 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "Chris Nwachukwu, home" [ref=e5] [cursor=pointer]:
+        - /url: /#hero
+        - generic [ref=e10]: chris.
+      - navigation "Main navigation" [ref=e11]:
+        - link "Home" [ref=e12] [cursor=pointer]:
+          - /url: /#hero
+        - link "Resume" [ref=e13] [cursor=pointer]:
+          - /url: /#experience
+        - link "Works" [ref=e14] [cursor=pointer]:
+          - /url: /#projects
+        - link "Skills" [ref=e15] [cursor=pointer]:
+          - /url: /#skills
+        - link "Contact" [ref=e16] [cursor=pointer]:
+          - /url: /#contact
+      - generic [ref=e17]:
+        - link "CV" [ref=e18] [cursor=pointer]:
+          - /url: /pdf/Chris-Software-Engineer.pdf
+        - button "Switch to dark theme" [ref=e24] [cursor=pointer]
+        - link "Get in touch" [ref=e27] [cursor=pointer]:
+          - /url: /#contact
+  - main [ref=e32]:
+    - region "Chris Nwachukwu." [ref=e33]:
+      - generic [ref=e34]:
+        - generic [ref=e35]:
+          - paragraph [ref=e36]:
+            - text: Lagos, Nigeria
+            - generic [ref=e38]: /
+            - text: Building for the web
+          - heading "Chris Nwachukwu." [level=1] [ref=e39]: ChrisNwachukwu.
+          - paragraph [ref=e40]:
+            - generic [ref=e41]: Software Engineer, Fullstack Engineer, and Backend Engineer.
+            - generic [ref=e43]:
+              - generic [ref=e44]: Sof
+              - text: "|"
+          - paragraph [ref=e45]: I turn ideas into web applications, from the interface to the database. Working with TypeScript and Python, I build thoughtful user experiences and the systems behind them.
+          - generic [ref=e46]:
+            - link "View my work" [ref=e47] [cursor=pointer]:
+              - /url: /#projects
+            - link "Get in touch" [ref=e51] [cursor=pointer]:
+              - /url: /#contact
+          - paragraph [ref=e55]:
+            - generic [ref=e56]: Working across
+            - text: React
+            - generic [ref=e57]: ·
+            - text: Next.js
+            - generic [ref=e58]: ·
+            - text: Node.js
+            - generic [ref=e59]: ·
+            - text: FastAPI
+        - figure "From frontend to backend. Curious about how it all fits together." [ref=e60]:
+          - generic [ref=e61]:
+            - generic [ref=e62]: Behind the code
+            - generic [ref=e63]: 01 / CHRIS
+          - img "Chris Nwachukwu wearing a checked shirt, seated against a light wall" [ref=e65]
+          - generic [ref=e66]:
+            - generic [ref=e67]:
+              - strong [ref=e68]: From frontend to backend.
+              - generic [ref=e69]: Curious about how it all fits together.
+            - generic [aria-hidden] [ref=e70]: CN.
+        - link "Explore the work" [ref=e71] [cursor=pointer]:
+          - /url: /#projects
+    - region "A few things I've worked on" [ref=e76]:
+      - generic [ref=e77]:
+        - paragraph [ref=e79]: A few thingsI've worked on
+        - list [ref=e83]:
+          - listitem [ref=e84]:
+            - link "~20% Faster OCR processing 16 seconds to under 13" [ref=e85] [cursor=pointer]:
+              - /url: /projects/vehicle-license-app
+              - generic [ref=e86]: ~20%
+              - generic [ref=e87]:
+                - strong [ref=e88]: Faster OCR processing
+                - generic [ref=e89]: 16 seconds to under 13
+          - listitem [ref=e90]:
+            - link "~35% Product-page improvement Through image lazy loading" [ref=e91] [cursor=pointer]:
+              - /url: /#experience
+              - generic [ref=e92]: ~35%
+              - generic [ref=e93]:
+                - strong [ref=e94]: Product-page improvement
+                - generic [ref=e95]: Through image lazy loading
+          - listitem [ref=e96]:
+            - link "100+ Developers mentored Web development fundamentals" [ref=e97] [cursor=pointer]:
+              - /url: /#experience
+              - generic [ref=e98]: 100+
+              - generic [ref=e99]:
+                - strong [ref=e100]: Developers mentored
+                - generic [ref=e101]: Web development fundamentals
+    - generic [ref=e103]:
+      - heading "Recent Projects" [level=2] [ref=e104]
+      - generic [ref=e105]:
+        - article [ref=e106]:
+          - generic [ref=e107]:
+            - img "Career Guidance App preview 1" [ref=e109]
+            - generic [ref=e110]:
+              - button "Show Career Guidance App image 1" [ref=e111] [cursor=pointer]
+              - button "Show Career Guidance App image 2" [ref=e112] [cursor=pointer]
+              - button "Show Career Guidance App image 3" [ref=e113] [cursor=pointer]
+          - generic [ref=e114]:
+            - heading "Career Guidance App" [level=3] [ref=e115]
+            - paragraph [ref=e116]: A career assessment platform that evaluates user interests and provides personalized career recommendations using the RIASEC model.
+            - link "View project →" [ref=e117] [cursor=pointer]:
+              - /url: /projects/career-guidance-app
+              - text: View project
+              - generic [ref=e118]: →
+        - article [ref=e119]:
+          - generic [ref=e120]:
+            - img "Vehicle License Plate Recognition System preview 1" [ref=e122]
+            - generic [ref=e123]:
+              - button "Show Vehicle License Plate Recognition System image 1" [ref=e124] [cursor=pointer]
+              - button "Show Vehicle License Plate Recognition System image 2" [ref=e125] [cursor=pointer]
+              - button "Show Vehicle License Plate Recognition System image 3" [ref=e126] [cursor=pointer]
+          - generic [ref=e127]:
+            - heading "Vehicle License Plate Recognition System" [level=3] [ref=e128]
+            - paragraph [ref=e129]: An AI-powered Vehicle License Plate Recognition System. It provides secure authentication, vehicle management, OCR processing, and license plate detection.
+            - link "View project →" [ref=e130] [cursor=pointer]:
+              - /url: /projects/vehicle-license-app
+              - text: View project
+              - generic [ref=e131]: →
+        - article [ref=e132]:
+          - generic [ref=e133]:
+            - img "Cryptocurrency Finance App preview 1" [ref=e135]
+            - generic [ref=e136]:
+              - button "Show Cryptocurrency Finance App image 1" [ref=e137] [cursor=pointer]
+              - button "Show Cryptocurrency Finance App image 2" [ref=e138] [cursor=pointer]
+              - button "Show Cryptocurrency Finance App image 3" [ref=e139] [cursor=pointer]
+              - button "Show Cryptocurrency Finance App image 4" [ref=e140] [cursor=pointer]
+          - generic [ref=e141]:
+            - heading "Cryptocurrency Finance App" [level=3] [ref=e142]
+            - paragraph [ref=e143]: A modern cryptocurrency application for discovering assets, following market data, and viewing financial information.
+            - link "View project →" [ref=e144] [cursor=pointer]:
+              - /url: /projects/cryptocurrency-finance-app
+              - text: View project
+              - generic [ref=e145]: →
+        - article [ref=e146]:
+          - generic [ref=e147]:
+            - img "Inventory Management App preview 1" [ref=e149]
+            - generic [ref=e150]:
+              - button "Show Inventory Management App image 1" [ref=e151] [cursor=pointer]
+              - button "Show Inventory Management App image 2" [ref=e152] [cursor=pointer]
+              - button "Show Inventory Management App image 3" [ref=e153] [cursor=pointer]
+          - generic [ref=e154]:
+            - heading "Inventory Management App" [level=3] [ref=e155]
+            - paragraph [ref=e156]: An inventory application for tracking products, stock levels, and important inventory activity.
+            - link "View project →" [ref=e157] [cursor=pointer]:
+              - /url: /projects/inventory-management-app
+              - text: View project
+              - generic [ref=e158]: →
+    - generic [ref=e162]:
+      - heading "My Work Experience" [level=2] [ref=e163]
+      - generic [ref=e164]:
+        - generic [ref=e172]:
+          - generic [ref=e173]:
+            - generic [ref=e174]: September 2024 – January 2025
+            - generic [ref=e175]: Apexbyte
+          - heading "Front End Developer" [level=3] [ref=e176]
+          - paragraph [ref=e177]: Collaborated with a cross-functional team of engineers to develop and maintain complex software applications. Leveraged React.js, TypeScript, and Git to implement efficient development workflows and architected responsive user interfaces ensuring high performance.
+        - generic [ref=e183]:
+          - generic [ref=e184]:
+            - generic [ref=e185]: August 2023 – September 2023
+            - generic [ref=e186]: Flip To Tech
+          - heading "Front End Developer" [level=3] [ref=e187]
+          - paragraph [ref=e188]: Designed and implemented modern user interfaces using React.js and Tailwind CSS. Ensured cross-browser compatibility and mobile responsiveness across diverse platforms. Integrated reusable components strategically to reduce development time.
+        - generic [ref=e196]:
+          - generic [ref=e197]:
+            - generic [ref=e198]: March 2023 – August 2023
+            - generic [ref=e199]: Flip To Tech
+          - heading "Junior Developer" [level=3] [ref=e200]
+          - paragraph [ref=e201]: Spearheaded technical instruction for over 100 students focusing on HTML, CSS, and JavaScript fundamentals. Assisted senior developers in debugging, code optimization, and the implementation of new project features.
+    - generic [ref=e203]:
+      - heading "My Skills" [level=1] [ref=e204]
+      - generic [ref=e205]:
+        - paragraph [ref=e210] [cursor=pointer]: TypeScript
+        - paragraph [ref=e215] [cursor=pointer]: React.js
+        - paragraph [ref=e220] [cursor=pointer]: Next.js
+        - paragraph [ref=e225] [cursor=pointer]: TailwindCSS
+        - paragraph [ref=e230] [cursor=pointer]: Node.js
+        - paragraph [ref=e235] [cursor=pointer]: Express
+        - paragraph [ref=e240] [cursor=pointer]: SQL
+        - paragraph [ref=e245] [cursor=pointer]: PostgreSQL
+        - paragraph [ref=e250] [cursor=pointer]: Prisma
+        - paragraph [ref=e255] [cursor=pointer]: Python
+        - paragraph [ref=e260] [cursor=pointer]: FastAPI
+        - paragraph [ref=e265] [cursor=pointer]: SQLAlchemy
+        - paragraph [ref=e270] [cursor=pointer]: JavaScript
+        - paragraph [ref=e275] [cursor=pointer]: Git/Github
+        - paragraph [ref=e280] [cursor=pointer]: Docker
+        - paragraph [ref=e285] [cursor=pointer]: Better Auth
+        - paragraph [ref=e290] [cursor=pointer]: Cloudflare
+        - paragraph [ref=e297] [cursor=pointer]: Problem Solving
+        - paragraph [ref=e302] [cursor=pointer]: Collaboration
+    - generic [ref=e305]:
+      - generic [ref=e306]:
+        - heading "Schedule a call with me to see if I can help" [level=1] [ref=e307]
+        - paragraph [ref=e308]: Reach out to me today and let's discuss how I can help you achieve your goals.
+        - generic [ref=e309]:
+          - generic [ref=e310]: "+2348104948700"
+          - generic [ref=e314]: chrisnwachukwu107@gmail.com
+          - generic [ref=e319]: Lagos, Nigeria
+      - generic [ref=e325]:
+        - textbox "Name" [ref=e326]
+        - textbox "Email Address" [ref=e327]
+        - textbox "Mobile Number" [ref=e328]
+        - textbox "Your Message" [ref=e329]
+        - button "Send Message" [ref=e330] [cursor=pointer]
+    - generic [ref=e333]:
+      - paragraph [ref=e335]: Chris Nwachukwu
+      - generic [ref=e336]:
+        - link [ref=e337] [cursor=pointer]:
+          - /url: https://x.com/Programmerchriz
+        - link [ref=e340] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/christian-chukwuebuka-nwachukwu/
+        - link [ref=e343] [cursor=pointer]:
+          - /url: https://github.com/Programmerchriz
+  - generic [ref=e350] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e351]
+    - generic [ref=e356]:
+      - button "Open issues overlay" [ref=e357]:
+        - generic [ref=e358]:
+          - generic [aria-hidden] [ref=e359]: "1"
+          - generic [ref=e360]: "2"
+        - generic [ref=e361]:
+          - text: Issue
+          - generic [aria-hidden] [ref=e362]: s
+      - button "Collapse issues badge" [ref=e363]
+  - alert [ref=e366]

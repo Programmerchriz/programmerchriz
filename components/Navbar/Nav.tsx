@@ -1,83 +1,46 @@
 "use client";
 
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { FaCode } from "react-icons/fa";
-
-import { NAV_LINKS } from "@/constants/constants";
-import { BiDownload } from "react-icons/bi";
-import { HiBars3BottomRight } from "react-icons/hi2";
+import { FiArrowUpRight, FiCode, FiDownload, FiMenu } from "react-icons/fi";
+import { CV_URL, NAV_LINKS } from "@/constants/constants";
+import ThemeToggle from "@/components/Theme/ThemeToggle";
 
 type NavProps = {
   openNav: () => void;
+  showNav: boolean;
+  activeSection: string | null;
 };
 
-const Nav = ({ openNav }: NavProps) => {
-  const [navBg, setNavBg] = useState(false);
-
-  useEffect(() => {
-    const handler = () => {
-      if (window.scrollY >= 90) setNavBg(true);
-      if (window.scrollY < 90) setNavBg(false);
-    };
-
-    window.addEventListener("scroll", handler);
-
-    return () => {
-      window.removeEventListener("scroll", handler);
-    };
-  }, []);
-
+export default function Nav({ openNav, showNav, activeSection }: NavProps) {
   return (
-    <div
-      className={`transition-all duration-200 h-[12vh] z-1000 fixed w-full ${navBg ? "bg-[#0f142ed9] shadow-md" : "fixed"}`}
-    >
-      <div className="flex items-center justify-between h-full w-[90%] mx-auto">
-        {/* Logo */}
-        <div className="flex items-center space-x-2">
-          <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center flex-col">
-            <FaCode className="w-5 h-5 text-black" />
-          </div>
-
-          <h1 className="text-xl hidden sm:block md:text-2xl text-white font-bold">
-            CHRIS
-          </h1>
-        </div>
-
-        {/* Navigation Links */}
-        <div className="hidden lg:flex space-x-6 xl:space-x-10">
+    <header className="site-header">
+      <div className="site-container header-inner">
+        <Link href="/#hero" className="wordmark" aria-label="Chris Nwachukwu, home">
+          <span className="wordmark-icon"><FiCode aria-hidden="true" /></span>
+          <span>chris<span className="wordmark-period">.</span></span>
+        </Link>
+        <nav aria-label="Main navigation" className="desktop-nav">
           {NAV_LINKS.map((link) => (
-            <Link
-              key={link.id}
-              href={link.url}
-              className="text-base hover:text-cyan-300 text-white font-medium transition-all duration-200"
-            >
-              <p>{link.label}</p>
+            <Link key={link.id} href={link.url} className="nav-link"
+              aria-current={activeSection === link.id ? "location" : undefined}>
+              {link.label}
             </Link>
           ))}
-        </div>
-
-        {/* Buttons */}
-        <div className="flex items-center space-x-4">
-          {/* CV button */}
-          <Link
-            href="/pdf/Chris-Software-Engineer.pdf"
-            download="Chris-Nwachukwu-CV.pdf"
-            className="px-8 py-3.5 text-sm cursor-pointer rounded-lg bg-blue-800 hover:bg-blue-900 disabled:cursor-not-allowed disabled:opacity-40 transition-all duration-300 text-white flex items-center space-x-2"
-          >
-            <BiDownload className="w-5 h-5" />
-            <span>Download CV</span>
+        </nav>
+        <div className="header-actions">
+          <a href={CV_URL} download="Chris-Nwachukwu-CV.pdf" className="header-cv">
+            <FiDownload aria-hidden="true" /> <span>CV</span>
+          </a>
+          <ThemeToggle />
+          <Link href="/#contact" className="button button-primary header-contact">
+            Get in touch <FiArrowUpRight aria-hidden="true" />
           </Link>
-
-          {/* Burger Menu */}
-          <HiBars3BottomRight
-            onClick={openNav}
-            className="w-8 h-8 cursor-pointer text-white lg:hidden"
-          />
+          <button type="button" className="icon-button menu-trigger" onClick={openNav}
+            aria-label="Open navigation menu" aria-expanded={showNav} aria-controls="mobile-navigation" aria-haspopup="dialog">
+            <FiMenu aria-hidden="true" />
+          </button>
         </div>
       </div>
-    </div>
+    </header>
   );
-};
-
-export default Nav;
+}

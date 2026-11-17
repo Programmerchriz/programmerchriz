@@ -1,87 +1,37 @@
-"use client";
-
 import Image from "next/image";
-import { BsArrowRight } from "react-icons/bs";
-import { motion } from "framer-motion";
-
-import Typewriter from "typewriter-effect";
-import ParticlesHero from "./ParticleBackground";
 import Link from "next/link";
-import { slideInFromUp, scaleIn } from "@/lib/animations";
+import { FiArrowDown, FiArrowRight, FiArrowUpRight } from "react-icons/fi";
+import RoleTyping from "./RoleTyping";
 
-const Hero = () => {
+export default function Hero() {
   return (
-    <div
-      id="hero"
-      className="relative h-screen flex items-center justify-center text-white overflow-hidden flex-col"
-    >
-      <ParticlesHero />
-      <div className="relative 2-10 flex flex-col items-center">
-        <motion.div initial="hidden" animate="visible" variants={scaleIn}>
-          <Image
-            src="/images/headline.jpg"
-            alt="heroimage"
-            width={150}
-            height={150}
-            className="rounded-full border-8 border-[#0c0c48aa]"
-          />
-        </motion.div>
-
-        <motion.h1
-          initial="hidden"
-          animate="visible"
-          variants={slideInFromUp}
-          className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mt-6 tracking-wide"
-        >
-          Building web products, <br />
-          <span className="text-cyan-200">brands, and experiences.</span>
-        </motion.h1>
-        <motion.h2
-          initial="hidden"
-          animate="visible"
-          variants={slideInFromUp}
-          transition={{ delay: 0.2 }}
-          className="mt-5 text-sm px-2 text-center sm:text-2xl font-medium flex items-center"
-        >
-          Hi, I&apos;m Chris. I&apos;m a passionate
-          <span className="text-cyan-200 font-bold">
-            <Typewriter
-              options={{
-                strings: [
-                  " Software Engineer",
-                  " Fullstack Engineer",
-                  " Frontend Engineer",
-                  " Backend Engineer",
-                  " Web Developer",
-                ],
-                autoStart: true,
-                loop: true,
-                delay: 75,
-                deleteSpeed: 50,
-                wrapperClassName: "pl-2",
-              }}
-            />
-          </span>
-        </motion.h2>
-
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={slideInFromUp}
-          transition={{ delay: 0.4 }}
-          className="flex gap-4 mt-6 flex-wrap justify-center"
-        >
-          <Link
-            href="#projects"
-            className="px-10 py-4 bg-blue-800 hover:bg-blue-900 transition-all duration-300 cursor-pointer rounded-full text-lg font-medium flex items-center"
-          >
-            <span>See my work</span>
-            <BsArrowRight className="w-5 h-5 ml-2" />
-          </Link>
-        </motion.div>
+    <section id="hero" className="hero-section" aria-labelledby="hero-title">
+      <div className="hero-grid" aria-hidden="true" />
+      <div className="site-container hero-layout">
+        <div className="hero-copy">
+          <p className="eyebrow hero-location"><span className="location-dot" /> Lagos, Nigeria <span className="label-divider">/</span> Building for the web</p>
+          <h1 id="hero-title" className="hero-name">Chris{" "}<br /><span>Nwachukwu.</span></h1>
+          <p className="hero-role"><RoleTyping /></p>
+          <p className="hero-description">I turn ideas into web applications, from the interface to the database. Working with TypeScript and Python, I build thoughtful user experiences and the systems behind them.</p>
+          <div className="hero-actions">
+            <Link href="/#projects" className="button button-primary">View my work <FiArrowRight aria-hidden="true" /></Link>
+            <Link href="/#contact" className="button button-secondary">Get in touch <FiArrowUpRight aria-hidden="true" /></Link>
+          </div>
+          <p className="hero-stack"><span>Working across</span> React <i>·</i> Next.js <i>·</i> Node.js <i>·</i> FastAPI</p>
+        </div>
+        <figure className="portrait-card">
+          <div className="portrait-heading"><span className="eyebrow">Behind the code</span><span className="portrait-index">01 / CHRIS</span></div>
+          <div className="portrait-image">
+            <Image src="/images/headline.jpg" alt="Chris Nwachukwu wearing a checked shirt, seated against a light wall"
+              fill priority sizes="(min-width: 1280px) 410px, (min-width: 900px) 36vw, (min-width: 600px) 440px, 90vw" />
+          </div>
+          <figcaption className="portrait-caption">
+            <div><strong>From frontend to backend.</strong><span>Curious about how it all fits together.</span></div>
+            <span className="portrait-monogram" aria-hidden="true">CN<span>.</span></span>
+          </figcaption>
+        </figure>
+        <Link href="/#projects" className="hero-scroll"><span><FiArrowDown aria-hidden="true" /></span> Explore the work</Link>
       </div>
-    </div>
+    </section>
   );
-};
-
-export default Hero;
+}
