@@ -9,15 +9,15 @@ export default function Hero() {
       <div className="hero-grid" aria-hidden="true" />
       <div className="site-container hero-layout">
         <div className="hero-copy">
-          <p className="eyebrow hero-location"><span className="location-dot" /> Lagos, Nigeria <span className="label-divider">/</span> Building for the web</p>
+          <p className="eyebrow hero-location"><span className="location-dot" /> Lagos, Nigeria <span className="label-divider">/</span> Builder</p>
           <h1 id="hero-title" className="hero-name">Chris{" "}<br /><span>Nwachukwu.</span></h1>
           <p className="hero-role"><RoleTyping /></p>
-          <p className="hero-description">I turn ideas into web applications, from the interface to the database. Working with TypeScript and Python, I build thoughtful user experiences and the systems behind them.</p>
+          <p className="hero-description">I turn ideas into web applications, from the interface to the backend. Working with TypeScript and Python, I build thoughtful user experiences and the systems behind them.</p>
           <div className="hero-actions">
             <Link href="/#projects" className="button button-primary">View my work <FiArrowRight aria-hidden="true" /></Link>
             <Link href="/#contact" className="button button-secondary">Get in touch <FiArrowUpRight aria-hidden="true" /></Link>
           </div>
-          <p className="hero-stack"><span>Working across</span> React <i>·</i> Next.js <i>·</i> Node.js <i>·</i> FastAPI</p>
+          <p className="hero-stack"><span>Working across</span> TypeScript <i>·</i> React <i>·</i> Next.js <i>·</i> Node.js <i>·</i> Express.js <i>·</i> FastAPI <i>·</i> PostgreSQL <i>·</i> and more...</p>
         </div>
         <figure className="portrait-card">
           <div className="portrait-heading"><span className="eyebrow">Behind the code</span><span className="portrait-index">01 / CHRIS</span></div>
@@ -26,7 +26,7 @@ export default function Hero() {
               fill priority sizes="(min-width: 1280px) 410px, (min-width: 900px) 36vw, (min-width: 600px) 440px, 90vw" />
           </div>
           <figcaption className="portrait-caption">
-            <div><strong>From frontend to backend.</strong><span>Curious about how it all fits together.</span></div>
+            <div><strong>From frontend to backend.</strong><span>Shipping software solutions.</span></div>
             <span className="portrait-monogram" aria-hidden="true">CN<span>.</span></span>
           </figcaption>
         </figure>

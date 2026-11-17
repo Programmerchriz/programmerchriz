@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "./projects.css";
+import "./supporting.css";
 import ReponsiveNav from "@/components/Navbar/ReponsiveNav";
 import ScrollToTop from "@/components/Helper/ScrollToTop";
 import MotionProvider from "@/components/Helper/MotionProvider";
@@ -45,6 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
       className={`${fonts.className} h-full antialiased`}
     >

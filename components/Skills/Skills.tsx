@@ -54,8 +54,9 @@ const skillGroups = [
     skills: [
       "Git & GitHub",
       "Docker",
-      "CI workflows",
+      "CI & CD workflows",
       "Cloudflare R2",
+      "Oracle Cloud Infrastructure",
       "Resend",
     ],
   },

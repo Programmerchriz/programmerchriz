@@ -15,7 +15,7 @@ export default function Nav({ openNav, showNav, activeSection }: NavProps) {
   return (
     <header className="site-header">
       <div className="site-container header-inner">
-        <Link href="/#hero" className="wordmark" aria-label="Chris Nwachukwu, home">
+        <Link href="/" className="wordmark" aria-label="Chris Nwachukwu, home">
           <span className="wordmark-icon"><FiCode aria-hidden="true" /></span>
           <span>chris<span className="wordmark-period">.</span></span>
         </Link>

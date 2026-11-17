@@ -76,7 +76,7 @@ export default function ProjectGallery({ images = [], title }: { images?: Projec
         </div>
       </div>
       {images.length > 1 && <div className="gallery-thumbnails" aria-label="Choose a screenshot">{images.map((item, itemIndex) => <button type="button" key={item.src} onClick={() => select(itemIndex)} aria-label={`Show screenshot ${itemIndex + 1}: ${item.alt}`} aria-current={currentIndex === itemIndex ? "true" : undefined}><span className="gallery-thumb-image">{failed.includes(item.src) ? <span className="gallery-thumb-error">Unavailable</span> : <Image src={item.src} alt="" fill sizes="120px" onError={() => setFailed((previous) => previous.includes(item.src) ? previous : [...previous, item.src])} />}</span><span>{String(itemIndex + 1).padStart(2, "0")}</span></button>)}</div>}
-      {images.length > 1 && <p className="gallery-help">Use the arrows, select a preview or swipe. When focused, use ← →, Home or End. {reducedMotion ? "Slideshow is disabled for reduced motion." : "Slideshow is off by default and pauses over the image or on interaction."}</p>}
+      {images.length > 1 && <p className="gallery-help">Use the arrows, select a preview or swipe. {reducedMotion ? "Slideshow is disabled for reduced motion." : "Slideshow is off by default and pauses over the image or on interaction."}</p>}
     </section>
   );
 }

@@ -48,3 +48,5 @@ next-env.d.ts
 other-imp-docs/
 output/
 PORTFOLIO-OVERVIEW.md
+scripts/
+tall git-filter-repo>=2.47

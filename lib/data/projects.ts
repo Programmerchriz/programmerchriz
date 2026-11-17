@@ -46,7 +46,7 @@ export const projects: Project[] = [
       "label": "Built · provider rollout in progress",
       "detail": "The public website and affiliate interface are available. Backend capabilities are documented in source; full live funding and fulfillment journeys have not been verified."
     },
-    "shortDescription": "WhatsApp-first top-ups and bills, backed by a double-entry wallet and durable fulfillment.",
+    "shortDescription": "WhatsApp-first top-ups and bills, backed by a double-entry wallet ledger and durable fulfillment.",
     "description": "SwiftTopUp brings airtime, data, electricity, cable TV and available exam PIN purchases into a guided WhatsApp conversation. I built the backend around verifiable money movement and recoverable provider operations, with React applications for the public website, affiliate workspace and administration. The product includes wallet funding, purchase confirmation, delivery updates and referral reward accounting.",
     "liveLink": {
       "label": "Visit SwiftTopUp website",
@@ -61,10 +61,6 @@ export const projects: Project[] = [
         "label": "Public & affiliate repository",
         "visibility": "private"
       },
-      {
-        "label": "Administration repository",
-        "visibility": "private"
-      }
     ],
     "images": [
       {
@@ -85,7 +81,7 @@ export const projects: Project[] = [
       {
         "src": "/images/swifttopup/affiliate.png",
         "alt": "SwiftTopUp affiliate workspace showing referral progress, tiers and reward balance.",
-        "caption": "Affiliate workspace: attribution, qualification progress and reward accounting. This screen is not evidence of user adoption."
+        "caption": "Affiliate workspace: attribution, qualification progress and reward accounting."
       }
     ],
     "technologies": [
@@ -143,11 +139,11 @@ export const projects: Project[] = [
       },
       {
         "title": "A provider timeout is an unknown result",
-        "description": "Persist the request identity, hold a recoverable state and requery before deciding to fulfill or refund. This avoids treating every network failure as a failed purchase."
+        "description": "The requested identity is persisted a recoverable state is held and requeried before fulfillment or refund. This avoids treating every network failure as a failed purchase."
       },
       {
         "title": "A process can stop between a commit and a notification",
-        "description": "Persist the notification intention and recover missing scheduling from durable records. Queue delivery is at least once, with idempotent database effects."
+        "description": "The notification intention is persisted, and missing scheduling is recovered from durable records. Delivery is queued at least once, with idempotent database effects."
       }
     ],
     "outcomes": [
@@ -265,7 +261,7 @@ export const projects: Project[] = [
     "order": 30,
     "status": {
       "label": "Built · web demo",
-      "detail": "Assessment, scoring and saved progress are documented in the existing project and CV."
+      "detail": "Assessment, scoring and saved progress are fully implemented and functional."
     },
     "challenges": [
       {
@@ -274,7 +270,7 @@ export const projects: Project[] = [
       },
       {
         "title": "Keep scoring consistent",
-        "description": "Calculate interest scores on the server and validate submitted responses before producing recommendations."
+        "description": "Scores are calculated on the server and submitted responses are validated before producing recommendations."
       }
     ],
     "outcomes": [
@@ -386,16 +382,16 @@ export const projects: Project[] = [
       "label": "Built · web demo",
       "detail": "Registration, image-based recognition and verification are implemented. Continuous camera streams remain future work."
     },
-    "challenges": [
-      {
-        "title": "Reduce repeated model work",
-        "description": "Keep detection and OCR services loaded between requests, and reuse recognition results during verification instead of rerunning the image pipeline."
-      },
-      {
-        "title": "Make recognition correctable",
-        "description": "OCR can return ambiguous candidates. Candidate selection and manual correction give an officer a way to verify the intended plate."
-      }
-    ],
+    // "challenges": [
+    //   {
+    //     "title": "Reduce repeated model work",
+    //     "description": "Keep detection and OCR services loaded between requests, and reuse recognition results during verification instead of rerunning the image pipeline."
+    //   },
+    //   {
+    //     "title": "Make recognition correctable",
+    //     "description": "OCR can return ambiguous candidates. Candidate selection and manual correction give an officer a way to verify the intended plate."
+    //   }
+    // ],
     "outcomes": [
       {
         "title": "~20% faster OCR processing",
@@ -497,12 +493,12 @@ export const projects: Project[] = [
     "order": 40,
     "status": {
       "label": "Built · web demo",
-      "detail": "Market discovery and asset information are documented in the existing project."
+      "detail": "Market discovery and asset information are fully implemented and functional. The application relies on an external API for market data, which could affect availability."
     },
     "challenges": [
       {
         "title": "Make changing data understandable",
-        "description": "Use reusable asset views and explicit loading and error states to keep external market data understandable across screen sizes."
+        "description": "Reusable asset views and explicit loading and error states are used to keep external market data understandable across screen sizes."
       }
     ],
     "outcomes": [
@@ -512,7 +508,7 @@ export const projects: Project[] = [
       }
     ],
     "limitations": [
-      "Market availability and freshness depend on the external data provider.",
+      "Market availability depends on the external data provider.",
       "No verified adoption or performance figures are available."
     ],
     "evidenceNotes": [
@@ -596,12 +592,12 @@ export const projects: Project[] = [
     "order": 50,
     "status": {
       "label": "Built · web demo",
-      "detail": "Product management, stock visibility and dashboard functionality are documented in the existing portfolio."
+      "detail": "Product management, stock visibility and dashboard functionality are fully implemented and functional."
     },
     "challenges": [
       {
         "title": "Keep product operations consistent",
-        "description": "Centralize product data and reuse form validation across creation and editing, with searchable tables for routine inventory work."
+        "description": "Product data is centralized and reused form validation across creation and editing, with searchable tables for routine inventory work."
       }
     ],
     "outcomes": [
