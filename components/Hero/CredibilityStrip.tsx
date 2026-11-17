@@ -1,6 +1,6 @@
 import { FiArrowDownRight } from "react-icons/fi";
 
-// CV-reported outcomes. The detailed engineering-impact section belongs to Step 2.
+// Compact CV-reported outcomes; SelectedImpact supplies project-specific context.
 const highlights = [
   { value: "~20%", label: "Faster OCR processing", detail: "16 seconds to under 13", href: "/projects/vehicle-license-app" },
   { value: "~35%", label: "Product-page improvement", detail: "Through image lazy loading", href: "/#experience" },

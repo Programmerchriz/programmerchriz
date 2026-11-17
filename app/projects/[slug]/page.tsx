@@ -1,291 +1,47 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  FiArrowLeft,
-  FiCheck,
-  FiExternalLink,
-  FiGithub,
-  FiLayers,
-} from "react-icons/fi";
-
+import { FiArrowLeft, FiArrowUpRight } from "react-icons/fi";
 import ProjectGallery from "@/components/Projects/ProjectGallery";
-import { getProjectBySlug, projects } from "@/lib/data/projects";
+import ProjectLinks from "@/components/Projects/ProjectLinks";
+import { getProjectBySlug, getFeaturedProjects, projects } from "@/lib/data/projects";
+import { projectMetadata } from "@/lib/project-metadata";
 
-interface ProjectDetailPageProps {
-  params: Promise<{
-    slug: string;
-  }>;
+interface ProjectDetailPageProps { params: Promise<{ slug: string }> }
+// This portfolio publishes only the projects declared in the content model.
+export const dynamicParams = false;
+export const generateStaticParams = () => projects.map(({ slug }) => ({ slug }));
+export async function generateMetadata({ params }: ProjectDetailPageProps): Promise<Metadata> {
+  const project = getProjectBySlug((await params).slug);
+  return project ? projectMetadata(project) : { title: "Project Not Found | Chris Nwachukwu", robots: { index: false } };
 }
 
-export const generateStaticParams = () => {
-  return projects.map((project) => ({
-    slug: project.slug,
-  }));
-};
-
-export const generateMetadata = async ({
-  params,
-}: ProjectDetailPageProps): Promise<Metadata> => {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug);
-
-  if (!project) {
-    return {
-      title: "Project Not Found | Chris Nwachukwu",
-    };
-  }
-
-  return {
-    title: `${project.title} | Chris Nwachukwu`,
-    description: project.shortDescription,
-    openGraph: {
-      title: `${project.title} | Chris Nwachukwu`,
-      description: project.shortDescription,
-      images: [
-        {
-          url: project.images[0],
-          alt: project.title,
-        },
-      ],
-    },
-  };
-};
-
-const ProjectDetailPage = async ({
-  params,
-}: ProjectDetailPageProps) => {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug);
-
-  if (!project) {
-    notFound();
-  }
-
-  const frontendGithubUrl = project.githubUrl[0];
-  const backendGithubUrl = project.githubUrl[1];
-
-  return (
-    <main id="main-content" tabIndex={-1} className="relative min-h-screen overflow-hidden pb-24 pt-16 text-ink">
-      <div className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-accent-soft blur-[140px]" />
-
-      <div className="mx-auto w-[90%] max-w-6xl">
-        <Link
-          href="/#projects"
-          className="mb-10 inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-accent"
-        >
-          <FiArrowLeft className="h-4 w-4" />
-          Back to projects
-        </Link>
-
-        <section className="mb-12">
-          <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-6xl">
-            {project.title}
-          </h1>
-
-          <p className="mt-6 max-w-3xl text-base leading-8 text-muted sm:text-lg">
-            {project.shortDescription}
-          </p>
-
-          <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-action px-7 py-3.5 font-semibold text-on-action transition-all duration-300 hover:-translate-y-1 hover:bg-action-hover hover:shadow-lg hover:shadow-blue-950/40 md:col-span-2 lg:col-span-1"
-            >
-              <FiExternalLink className="h-5 w-5" />
-              View live project
-            </a>
-
-            <a
-              href={frontendGithubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-line bg-surface px-7 py-3.5 font-semibold text-ink transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:bg-accent-soft hover:text-accent"
-            >
-              <FiGithub className="h-5 w-5" />
-              Frontend repository
-            </a>
-
-            {backendGithubUrl && (
-              <a
-                href={backendGithubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-line bg-surface px-7 py-3.5 font-semibold text-ink transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:bg-accent-soft hover:text-accent"
-              >
-                <FiGithub className="h-5 w-5" />
-                Backend repository
-              </a>
-            )}
-          </div>
-        </section>
-
-        <section className="mb-20">
-          <ProjectGallery
-            images={project.images}
-            title={project.title}
-          />
-        </section>
-
-        <div className="grid gap-8 lg:grid-cols-[1.5fr_0.8fr]">
-          <div className="space-y-8">
-            <section className="rounded-2xl border border-line bg-surface p-6 shadow-xl shadow-black/10 sm:p-8">
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent">
-                Project overview
-              </p>
-
-              <h2 className="text-2xl font-bold text-ink sm:text-3xl">
-                About the project
-              </h2>
-
-              <p className="mt-5 leading-8 text-muted">
-                {project.description}
-              </p>
-            </section>
-
-            <section className="rounded-2xl border border-line bg-surface p-6 shadow-xl shadow-black/10 sm:p-8">
-              <div className="mb-8 flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent-soft text-accent">
-                  <FiCheck className="h-5 w-5" />
-                </div>
-
-                <div>
-                  <p className="text-sm font-medium text-accent">
-                    Core functionality
-                  </p>
-
-                  <h2 className="text-2xl font-bold text-ink">
-                    Project features
-                  </h2>
-                </div>
-              </div>
-
-              <div className="grid gap-4 sm:grid-cols-2">
-                {project.features.map((feature) => (
-                  <div
-                    key={feature}
-                    className="flex items-start gap-3 rounded-xl border border-line bg-raised p-4"
-                  >
-                    <div className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent">
-                      <FiCheck className="h-3 w-3" />
-                    </div>
-
-                    <p className="text-sm leading-6 text-muted">
-                      {feature}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            <section className="rounded-2xl border border-line bg-surface p-6 shadow-xl shadow-black/10 sm:p-8">
-              <div className="mb-8 flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent-soft text-accent">
-                  <FiLayers className="h-5 w-5" />
-                </div>
-
-                <div>
-                  <p className="text-sm font-medium text-accent">
-                    Engineering approach
-                  </p>
-
-                  <h2 className="text-2xl font-bold text-ink">
-                    Architectural decisions
-                  </h2>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                {project.architecturalDecisions.map(
-                  (decision, index) => (
-                    <article
-                      key={decision.title}
-                      className="rounded-xl border border-line bg-raised p-5"
-                    >
-                      <div className="flex items-start gap-4">
-                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-action text-sm font-bold text-on-action">
-                          {index + 1}
-                        </span>
-
-                        <div>
-                          <h3 className="font-semibold text-ink">
-                            {decision.title}
-                          </h3>
-
-                          <p className="mt-2 text-sm leading-6 text-muted">
-                            {decision.description}
-                          </p>
-                        </div>
-                      </div>
-                    </article>
-                  ),
-                )}
-              </div>
-            </section>
-          </div>
-
-          <aside className="h-fit rounded-2xl border border-line bg-surface p-6 shadow-xl shadow-black/10 lg:sticky lg:top-28">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
-              Technologies
-            </p>
-
-            <h2 className="mt-2 text-2xl font-bold text-ink">
-              Project stack
-            </h2>
-
-            <div className="mt-6 flex flex-wrap gap-2">
-              {project.technologies.map((technology) => (
-                <span
-                  key={technology}
-                  className="rounded-lg border border-line bg-accent-soft px-3 py-2 text-sm text-muted"
-                >
-                  {technology}
-                </span>
-              ))}
-            </div>
-
-            <div className="my-7 h-px bg-white/10" />
-
-            <div className="space-y-3">
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex w-full items-center justify-between rounded-xl bg-action px-5 py-3.5 font-medium text-on-action transition-colors hover:bg-action-hover"
-              >
-                Live application
-                <FiExternalLink className="h-4 w-4" />
-              </a>
-
-              <a
-                href={frontendGithubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex w-full items-center justify-between rounded-xl border border-line bg-surface px-5 py-3.5 font-medium text-ink transition-colors hover:border-accent hover:text-accent"
-              >
-                Frontend source code
-                <FiGithub className="h-4 w-4" />
-              </a>
-
-              {backendGithubUrl && (
-                <a
-                  href={backendGithubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex w-full items-center justify-between rounded-xl border border-line bg-surface px-5 py-3.5 font-medium text-ink transition-colors hover:border-accent hover:text-accent"
-                >
-                  Backend source code
-                  <FiGithub className="h-4 w-4" />
-                </a>
-              )}
-            </div>
-          </aside>
-        </div>
+export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
+  const project = getProjectBySlug((await params).slug);
+  if (!project) notFound();
+  const ordered = getFeaturedProjects();
+  const nextProject = ordered[(ordered.findIndex(({ slug }) => slug === project.slug) + 1) % ordered.length];
+  return <main id="main-content" tabIndex={-1} className="case-page site-container">
+    <Link href="/#projects" className="case-back"><FiArrowLeft aria-hidden="true" /> All projects</Link>
+    <header className="case-introduction">
+      <p className="eyebrow text-accent">Case study / {project.category}</p>
+      <h1>{project.title}</h1><p className="case-deck">{project.shortDescription}</p>
+      <div className="case-facts"><div><span className="eyebrow">My contribution</span><p>{project.contribution}</p></div><div><span className="eyebrow">Documented status</span><p>{project.status.label}</p></div></div>
+      <ProjectLinks project={project} />
+    </header>
+    <ProjectGallery images={project.images} title={project.displayName} />
+    <div className="case-body">
+      <aside className="case-index"><nav aria-label="Case study sections"><span className="eyebrow">Inside this project</span><a href="#overview">Overview</a><a href="#functionality">Functionality</a><a href="#architecture">Architecture</a>{!!project.challenges?.length && <a href="#challenges">Challenges</a>}{!!project.outcomes?.length && <a href="#outcomes">Outcomes</a>}<a href="#status">Status & evidence</a><a href="#technology">Technology</a></nav></aside>
+      <div className="case-content">
+        <section id="overview" className="case-section"><p className="eyebrow text-accent">01 / The product</p><h2>Overview</h2><p className="case-prose">{project.description}</p></section>
+        <section id="functionality" className="case-section"><p className="eyebrow text-accent">02 / What it does</p><h2>Functionality</h2><ul className="feature-list">{project.features.map((feature) => <li key={feature}>{feature}</li>)}</ul></section>
+        <section id="architecture" className="case-section"><p className="eyebrow text-accent">03 / Engineering decisions</p><h2>Architecture, with reasons.</h2><ol className="architecture-list">{project.architecturalDecisions.map((decision, index) => <li key={decision.title}><span className="decision-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><div><h3>{decision.title}</h3><p>{decision.description}</p></div></li>)}</ol></section>
+        {!!project.challenges?.length && <section id="challenges" className="case-section"><p className="eyebrow text-accent">04 / The hard parts</p><h2>Challenges & responses</h2><div className="case-notes">{project.challenges.map((note) => <article key={note.title}><h3>{note.title}</h3><p>{note.description}</p></article>)}</div></section>}
+        {!!project.outcomes?.length && <section id="outcomes" className="case-section"><p className="eyebrow text-accent">05 / What changed</p><h2>Outcomes</h2><div className="outcome-list">{project.outcomes.map((note) => <article key={note.title}><h3>{note.title}</h3><p>{note.description}</p></article>)}</div></section>}
+        <section id="status" className="case-section"><p className="eyebrow text-accent">06 / Scope & evidence</p><h2>Where the project stands</h2><div className="status-note"><h3>{project.status.label}</h3><p>{project.status.detail}</p></div>{!!project.limitations?.length && <><h3 className="case-subheading">Current limitations</h3><ul className="case-bullets">{project.limitations.map((note) => <li key={note}>{note}</li>)}</ul></>}{!!project.evidenceNotes?.length && <details className="evidence-notes"><summary>Sources & measurement notes</summary><ul className="case-bullets">{project.evidenceNotes.map((note) => <li key={note}>{note}</li>)}</ul></details>}</section>
+        <section id="technology" className="case-section"><p className="eyebrow text-accent">07 / Tools used</p><h2>Technology</h2><ul className="technology-list case-technologies">{project.technologies.map((technology) => <li key={technology}>{technology}</li>)}</ul></section>
       </div>
-    </main>
-  );
-};
-
-export default ProjectDetailPage;
+    </div>
+    <footer className="case-next"><span className="eyebrow">Next project</span><Link href={`/projects/${nextProject.slug}`}>{nextProject.displayName}<FiArrowUpRight aria-hidden="true" /></Link><Link className="case-back" href="/#contact">Discuss a project <FiArrowUpRight aria-hidden="true" /></Link></footer>
+  </main>;
+}
