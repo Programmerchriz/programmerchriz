@@ -1,0 +1,53 @@
+### Result
+{"manualDefault":true,"end":true,"wrap":true,"arrow":true,"thumbnail":true,"scopedKeyboard":true,"play":true,"hoverPause":true,"pause":true,"original":true,"horizontalSwipe":true,"verticalScrollPreserved":true,"multitouchIgnored":true,"reducedMotion":true,"failedImage":true,"failedImageRecovery":true}
+### Ran Playwright code
+```js
+await (async(page)=>{
+ const checks={};
+ await page.goto('http://127.0.0.1:3101/projects/swifttopup');
+ await page.getByRole('button',{name:/Switch to .* theme/}).waitFor();
+ await page.setViewportSize({width:390,height:1000});
+ await page.emulateMedia({reducedMotion:'no-preference'});
+ await page.getByRole('button',{name:'Play slideshow',exact:true}).waitFor();
+ const label=()=>page.locator('.gallery-caption .eyebrow').innerText();
+ const initial=await label(); await page.waitForTimeout(6200); checks.manualDefault=(await label())===initial;
+ await page.locator('.project-gallery').focus(); await page.keyboard.press('End'); checks.end=(await label()).includes('04 OF 04');
+ await page.keyboard.press('ArrowRight'); checks.wrap=(await label()).includes('01 OF 04');
+ await page.keyboard.press('Home'); await page.keyboard.press('ArrowRight'); checks.arrow=(await label()).includes('02 OF 04');
+ await page.locator('.gallery-thumbnails button').last().click(); checks.thumbnail=(await label()).includes('04 OF 04');
+ await page.getByRole('link',{name:'CV',exact:true}).focus(); const beforeOutside=await label(); await page.keyboard.press('ArrowRight'); checks.scopedKeyboard=(await label())===beforeOutside;
+ await page.getByRole('button',{name:'Play slideshow',exact:true}).click(); await page.mouse.move(0,0); const beforePlay=await label(); await page.waitForTimeout(6500); checks.play=(await label())!==beforePlay;
+ await page.locator('.gallery-media').hover(); const beforeHover=await label(); await page.waitForTimeout(6500); checks.hoverPause=(await label())===beforeHover;
+ await page.getByRole('button',{name:'Pause slideshow',exact:true}).click(); checks.pause=await page.getByRole('button',{name:'Play slideshow',exact:true}).count()===1;
+ const [popup]=await Promise.all([page.waitForEvent('popup'),page.getByRole('link',{name:/Full-size image/}).click()]);
+ await popup.waitForLoadState(); checks.original=popup.url().includes('/images/swifttopup/'); await popup.close();
+ await page.locator('.project-gallery').focus(); await page.keyboard.press('Home');
+ async function swipe(dx,dy,multi=false){
+  await page.locator('.gallery-media').evaluate((el,{dx,dy,multi})=>{
+   const start=new Event('touchstart',{bubbles:true}); Object.defineProperty(start,'touches',{value:multi?[{clientX:250,clientY:100},{clientX:270,clientY:100}]:[{clientX:250,clientY:100}]}); el.dispatchEvent(start);
+   const end=new Event('touchend',{bubbles:true}); Object.defineProperty(end,'changedTouches',{value:[{clientX:250+dx,clientY:100+dy}]}); el.dispatchEvent(end);
+  },{dx,dy,multi});
+ }
+ await swipe(-130,5); checks.horizontalSwipe=(await label()).includes('02 OF 04');
+ const beforeVertical=await label(); await swipe(10,130); checks.verticalScrollPreserved=(await label())===beforeVertical;
+ await swipe(-130,5,true); checks.multitouchIgnored=(await label())===beforeVertical;
+ await page.getByRole('button',{name:'Play slideshow',exact:true}).click(); await page.emulateMedia({reducedMotion:'reduce'});
+ await page.getByText('Slideshow is disabled for reduced motion.',{exact:false}).waitFor();
+ const beforeReduced=await label(); await page.waitForTimeout(6500); checks.reducedMotion=(await label())===beforeReduced && await page.getByRole('button',{name:'Pause slideshow',exact:true}).count()===0;
+ await page.route('**/_next/image?*',route=>new URL(route.request().url()).searchParams.get('url')==='/images/swifttopup/website.png'?route.fulfill({status:404,body:'Missing test image',contentType:'text/plain'}):route.continue());
+ await page.reload(); await page.getByRole('button',{name:/Switch to .* theme/}).waitFor();
+ await page.locator('.gallery-image-error').waitFor();
+ checks.failedImage=await page.getByRole('link',{name:/Full-size image/}).count()===0;
+ await page.getByRole('button',{name:'Next screenshot',exact:true}).click();
+ await page.waitForFunction(()=>{const img=document.querySelector('.gallery-media img');return img&&img.complete&&img.naturalWidth>0;});
+ checks.failedImageRecovery=await page.locator('.gallery-image-error').count()===0;
+ await page.unroute('**/_next/image?*'); await page.reload(); await page.getByRole('button',{name:/Switch to .* theme/}).waitFor();
+ return checks;
+})(page);
+```
+### Page
+- Page URL: http://127.0.0.1:3101/projects/swifttopup
+- Page Title: SwiftTopUp | Chris Nwachukwu
+- HTTP status: 304 Not Modified
+### Events
+- New console entries: .playwright-cli/console-2026-11-17T15-01-30-385Z.log#L3-L4

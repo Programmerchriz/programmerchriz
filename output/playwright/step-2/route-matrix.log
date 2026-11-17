@@ -1,0 +1,33 @@
+### Result
+{"matrix":[{"slug":"swifttopup","theme":"light","status":200,"widths":[{"width":320,"pageWidth":320,"mainWidth":280},{"width":390,"pageWidth":390,"mainWidth":350},{"width":768,"pageWidth":768,"mainWidth":704},{"width":1024,"pageWidth":1024,"mainWidth":960},{"width":1440,"pageWidth":1440,"mainWidth":1184}],"themePersisted":true},{"slug":"swifttopup","theme":"dark","status":200,"widths":[{"width":320,"pageWidth":320,"mainWidth":280},{"width":390,"pageWidth":390,"mainWidth":350},{"width":768,"pageWidth":768,"mainWidth":704},{"width":1024,"pageWidth":1024,"mainWidth":960},{"width":1440,"pageWidth":1440,"mainWidth":1184}],"themePersisted":true},{"slug":"vehicle-license-app","theme":"light","status":200,"widths":[{"width":320,"pageWidth":320,"mainWidth":280},{"width":390,"pageWidth":390,"mainWidth":350},{"width":768,"pageWidth":768,"mainWidth":704},{"width":1024,"pageWidth":1024,"mainWidth":960},{"width":1440,"pageWidth":1440,"mainWidth":1184}],"themePersisted":true},{"slug":"vehicle-license-app","theme":"dark","status":200,"widths":[{"width":320,"pageWidth":320,"mainWidth":280},{"width":390,"pageWidth":390,"mainWidth":350},{"width":768,"pageWidth":768,"mainWidth":704},{"width":1024,"pageWidth":1024,"mainWidth":960},{"width":1440,"pageWidth":1440,"mainWidth":1184}],"themePersisted":true},{"slug":"career-guidance-app","theme":"light","status":200,"widths":[{"width":320,"pageWidth":320,"mainWidth":280},{"width":390,"pageWidth":390,"mainWidth":350},{"width":768,"pageWidth":768,"mainWidth":704},{"width":1024,"pageWidth":1024,"mainWidth":960},{"width":1440,"pageWidth":1440,"mainWidth":1184}],"themePersisted":true},{"slug":"career-guidance-app","theme":"dark","status":200,"widths":[{"width":320,"pageWidth":320,"mainWidth":280},{"width":390,"pageWidth":390,"mainWidth":350},{"width":768,"pageWidth":768,"mainWidth":704},{"width":1024,"pageWidth":1024,"mainWidth":960},{"width":1440,"pageWidth":1440,"mainWidth":1184}],"themePersisted":true},{"slug":"cryptocurrency-finance-app","theme":"light","status":200,"widths":[{"width":320,"pageWidth":320,"mainWidth":280},{"width":390,"pageWidth":390,"mainWidth":350},{"width":768,"pageWidth":768,"mainWidth":704},{"width":1024,"pageWidth":1024,"mainWidth":960},{"width":1440,"pageWidth":1440,"mainWidth":1184}],"themePersisted":true},{"slug":"cryptocurrency-finance-app","theme":"dark","status":200,"widths":[{"width":320,"pageWidth":320,"mainWidth":280},{"width":390,"pageWidth":390,"mainWidth":350},{"width":768,"pageWidth":768,"mainWidth":704},{"width":1024,"pageWidth":1024,"mainWidth":960},{"width":1440,"pageWidth":1440,"mainWidth":1184}],"themePersisted":true},{"slug":"inventory-management-app","theme":"light","status":200,"widths":[{"width":320,"pageWidth":320,"mainWidth":280},{"width":390,"pageWidth":390,"mainWidth":350},{"width":768,"pageWidth":768,"mainWidth":704},{"width":1024,"pageWidth":1024,"mainWidth":960},{"width":1440,"pageWidth":1440,"mainWidth":1184}],"themePersisted":true},{"slug":"inventory-management-app","theme":"dark","status":200,"widths":[{"width":320,"pageWidth":320,"mainWidth":280},{"width":390,"pageWidth":390,"mainWidth":350},{"width":768,"pageWidth":768,"mainWidth":704},{"width":1024,"pageWidth":1024,"mainWidth":960},{"width":1440,"pageWidth":1440,"mainWidth":1184}],"themePersisted":true}],"missingStatus":404,"errors":[],"consoleErrors":[]}
+### Ran Playwright code
+```js
+await (async(page)=>{
+ const errors=[]; const consoleErrors=[]; page.on('pageerror',e=>errors.push(e.message)); page.on('console',m=>{if(m.type()==='error')consoleErrors.push(m.text());});
+ const matrix=[];
+ await page.emulateMedia({reducedMotion:'reduce'});
+ for(const slug of ['swifttopup','vehicle-license-app','career-guidance-app','cryptocurrency-finance-app','inventory-management-app']){
+  const status=(await page.goto('http://127.0.0.1:3101/projects/'+slug)).status();
+  await page.getByRole('button',{name:/Switch to .* theme/}).waitFor();
+  for(const theme of ['light','dark']){
+   if(await page.locator('html').getAttribute('data-theme')!==theme)await page.getByRole('button',{name:'Switch to '+theme+' theme'}).click();
+   await page.reload(); await page.getByRole('button',{name:/Switch to .* theme/}).waitFor();
+   await page.evaluate(()=>document.fonts.ready);
+   const widths=[];
+   for(const width of [320,390,768,1024,1440]){
+    await page.setViewportSize({width,height:1000});
+    await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+    widths.push(await page.evaluate(()=>({width:innerWidth,pageWidth:document.documentElement.scrollWidth,mainWidth:document.querySelector('main').scrollWidth})));
+   }
+   matrix.push({slug,theme,status,widths,themePersisted:await page.locator('html').getAttribute('data-theme')===theme});
+  }
+ }
+ const missingResponse=await page.goto('http://127.0.0.1:3101/projects/does-not-exist-step2');
+ await page.getByRole('heading',{name:'This page could not be found'}).waitFor();
+ return{matrix,missingStatus:missingResponse.status(),errors,consoleErrors};
+})(page);
+```
+### Page
+- Page URL: http://127.0.0.1:3101/projects/does-not-exist-step2
+- Page Title: Chris Nwachukwu | Software Engineer & Fullstack Engineer
+- HTTP status: 404 Not Found

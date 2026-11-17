@@ -1,0 +1,18 @@
+{
+  "manualDefault": true,
+  "end": true,
+  "wrap": true,
+  "arrow": true,
+  "thumbnail": true,
+  "scopedKeyboard": true,
+  "play": true,
+  "hoverPause": true,
+  "pause": true,
+  "original": true,
+  "horizontalSwipe": true,
+  "verticalScrollPreserved": true,
+  "multitouchIgnored": true,
+  "reducedMotion": true,
+  "failedImage": true,
+  "failedImageRecovery": true
+}

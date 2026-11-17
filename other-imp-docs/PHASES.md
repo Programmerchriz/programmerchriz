@@ -2744,23 +2744,6 @@ I want users to be able to view their purchase history on their affiliate dashbo
 
 
 
-2. Step 2 — Projects, case studies, and engineering impact
-   Make the project work concise on the homepage and technically substantial inside each case study.
-   Work: Extend [project metadata](/home/Programmerchriz/Desktop/projects/ts-next/programmerchriz/lib/data/projects.ts) with short display names, categories, contribution, documented status, editable ordering, optional screenshots/live links, challenges, outcomes, and evidence notes.
-   Replace positional repository arrays with labeled entries whose public/private state is explicit. Public entries receive real URLs; private entries display readable, noninteractive information without exposing private URLs. Handle multiple repositories independently.
-   Build the featured grid around this proposed order: SwiftTopUp, Vehicle Recognition, Career Compass, Coin Global, Inventory Management. Preserve all existing slugs and keep homepage descriptions brief.
-   Redesign the shared [project-detail page](/home/Programmerchriz/Desktop/projects/ts-next/programmerchriz/app/projects/[slug]/page.tsx), retaining introduction, actions, screenshots, overview, functionality, architecture, and technology information. Add challenges, outcomes, limitations, and documented status without filling evidence gaps with invented content.
-   Improve galleries with readable images, keyboard controls, mobile usability, motion controls, and graceful handling when screenshots are absent.
-   Build SwiftTopUp’s case study around six strong topics:
-   - Modular monolith, separate API/worker processes, and provider adapters.
-   - Double-entry wallet and concurrent-spend protection.
-   - Signed funding verification and idempotent financial effects.
-   - Durable fulfillment, refunds, and reconciliation after uncertain responses.
-   - Durable messaging intake, outbound intentions, and completion notifications.
-   - Redis worker optimization, the recorded comparison, and recovery tradeoffs.
-   Explain the React public/affiliate and admin applications, supported services, optional AI boundary, and configuration-dependent functionality. Add a detailed Selected Impact section near the top of the homepage, linking achievements to their supporting projects.
-   Validation: Exercise every existing project route plus /projects/swifttopup, including direct loading and refresh. Verify external destinations, mixed repository visibility, missing links/media, gallery controls, both themes, and metadata fallbacks. Run static checks and build.
-   Approval gate: Present the project pages, evidence-qualified copy, validation results, and unresolved content questions. Stop before Step 3.
 3. Step 3 — Remaining sections, final QA, and handoff
    Complete the supporting content and verify the portfolio as a whole.
    Work: Refine experience using the CV’s actual roles and dates: Apexbyte, September 2024–January 2025; Flip To Tech frontend role, August–September 2023; and junior role, March–August 2023. Connect responsibilities to supported outcomes.

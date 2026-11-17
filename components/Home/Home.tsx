@@ -4,6 +4,7 @@ import CredibilityStrip from '../Hero/CredibilityStrip';
 // import Services from '../Services/Services';
 import Experience from '../Experience/Experience';
 import Projects from '../Projects/Projects';
+import SelectedImpact from '../Projects/SelectedImpact';
 import Skills from '../Skills/Skills';
 // import Reviews from '../Reviews/Reviews';
 import Contact from '../Contact/Contact';
@@ -15,6 +16,7 @@ const Home = () => {
     <main id="main-content" tabIndex={-1}>
       <Hero />
       <CredibilityStrip />
+      <SelectedImpact />
       {/* <Services /> */}
       <Projects />
       <Experience />
