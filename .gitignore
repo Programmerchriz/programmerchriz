@@ -47,6 +47,10 @@ next-env.d.ts
 # priv docs
 other-imp-docs/
 output/
+<<<<<<< HEAD
 PORTFOLIO-OVERVIEW.md
 scripts/
 tall git-filter-repo>=2.47
+=======
+PORTFOLIO-OVERVIEW.md
+>>>>>>> 1f43b160483881bbab1fc543b1d031d7da82213d
