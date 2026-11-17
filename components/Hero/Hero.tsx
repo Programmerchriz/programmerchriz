@@ -9,7 +9,7 @@ export default function Hero() {
       <div className="hero-grid" aria-hidden="true" />
       <div className="site-container hero-layout">
         <div className="hero-copy">
-          <p className="eyebrow hero-location"><span className="location-dot" /> Lagos, Nigeria <span className="label-divider">/</span> Builder</p>
+          <p className="eyebrow hero-location"><span className="location-dot" /><span className="label-divider">/</span> Builder</p>
           <h1 id="hero-title" className="hero-name">Chris{" "}<br /><span>Nwachukwu.</span></h1>
           <p className="hero-role"><RoleTyping /></p>
           <p className="hero-description">I turn ideas into web applications, from the interface to the backend. Working with TypeScript and Python, I build thoughtful user experiences and the systems behind them.</p>

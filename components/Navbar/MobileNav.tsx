@@ -70,7 +70,7 @@ export default function MobileNav({ showNav, closeNav, activeSection }: MobileNa
         <a href={CV_URL} download="Chris-Nwachukwu-CV.pdf" className="button button-secondary" onClick={closeNav}>
           <FiDownload aria-hidden="true" /> Download CV
         </a>
-        <p className="mobile-nav-note">Chris Nwachukwu<br /><span>Software Engineer · Lagos, Nigeria</span></p>
+        <p className="mobile-nav-note">Chris Nwachukwu<br /><span>Software Engineer</span></p>
       </div>
     </dialog>
   );

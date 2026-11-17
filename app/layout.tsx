@@ -47,10 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-<<<<<<< HEAD
       data-scroll-behavior="smooth"
-=======
->>>>>>> 1f43b160483881bbab1fc543b1d031d7da82213d
       suppressHydrationWarning
       className={`${fonts.className} h-full antialiased`}
     >
