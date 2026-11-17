@@ -1,148 +1,128 @@
-"use client";
+const skillGroups = [
+  {
+    title: "Interfaces",
+    description:
+      "Responsive interfaces, reusable components and accessible interaction patterns.",
+    skills: [
+      "TypeScript & JavaScript",
+      "React & Next.js",
+      "Tailwind CSS",
+      "HTML & CSS",
+      "React Router",
+    ],
+  },
+  {
+    title: "APIs & application logic",
+    description:
+      "Clear service boundaries, validated requests and authentication workflows.",
+    skills: [
+      "Node.js & Express",
+      "Python & FastAPI",
+      "REST API design",
+      "Authentication & roles",
+      "Provider integrations",
+    ],
+  },
+  {
+    title: "Data & background work",
+    description:
+      "Relational models, server-state caching and recoverable asynchronous work.",
+    skills: [
+      "PostgreSQL & SQL",
+      "Prisma & SQLAlchemy",
+      "Redis Streams",
+      "TanStack Query",
+      "Durable jobs & outboxes",
+    ],
+  },
+  {
+    title: "AI integration & vision",
+    description:
+      "Recognition pipelines and model-assisted features with application-owned validation.",
+    skills: [
+      "YOLO & OpenCV",
+      "EasyOCR",
+      "Image preprocessing",
+      "LLM API integration",
+      "Structured intent handling",
+    ],
+  },
+  {
+    title: "Delivery & tooling",
+    description:
+      "Versioned changes, repeatable builds and the services that support shipped features.",
+    skills: [
+      "Git & GitHub",
+      "Docker",
+      "CI workflows",
+      "Cloudflare R2",
+      "Resend",
+    ],
+  },
+  {
+    title: "Engineering practice",
+    description:
+      "Debugging real problems, reviewing changes and helping other developers progress.",
+    skills: [
+      "Performance optimization",
+      "Code reviews",
+      "Testing & debugging",
+      "Team collaboration",
+      "Developer mentoring",
+    ],
+  },
+];
 
-import {
-  SiTypescript,
-  SiJavascript,
-  SiReact,
-  SiNextdotjs,
-  SiNodedotjs,
-  SiExpress,
-  SiTailwindcss,
-  SiGithub,
-  SiPostgresql,
-  SiPrisma,
-  SiBetterauth,
-  SiDocker,
-  SiCloudflare,
-  SiPython,
-  SiFastapi,
-  SiSqlalchemy
-} from "react-icons/si";
-import { FaDatabase, FaUsers, FaLightbulb } from "react-icons/fa";
-import { FiTarget } from "react-icons/fi";
-import { motion } from "framer-motion";
-import { slideInFromUp, staggerContainer, scaleIn } from "@/lib/animations";
-
-const Skills = () => {
-  const skills = [
-    {
-      icon: <SiTypescript className="text-4xl" />,
-      name: "TypeScript",
-    },
-    {
-      icon: <SiReact className="text-4xl" />,
-      name: "React.js",
-    },
-    {
-      icon: <SiNextdotjs className="text-4xl" />,
-      name: "Next.js",
-    },
-    {
-      icon: <SiTailwindcss className="text-4xl" />,
-      name: "TailwindCSS",
-    },
-    {
-      icon: <SiNodedotjs className="text-4xl" />,
-      name: "Node.js",
-    },
-    {
-      icon: <SiExpress className="text-4xl" />,
-      name: "Express",
-    },
-    {
-      icon: <FaDatabase className="text-4xl" />,
-      name: "SQL",
-    },
-    {
-      icon: <SiPostgresql className="text-4xl" />,
-      name: "PostgreSQL",
-    },
-    {
-      icon: <SiPrisma className="text-4xl" />,
-      name: "Prisma",
-    },
-    {
-      icon: <SiPython className="text-4xl" />,
-      name: "Python",
-    },
-    {
-      icon: <SiFastapi className="text-4xl" />,
-      name: "FastAPI",
-    },
-    {
-      icon: <SiSqlalchemy className="text-4xl" />,
-      name: "SQLAlchemy",
-    },
-    {
-      icon: <SiJavascript className="text-4xl" />,
-      name: "JavaScript",
-    },
-    {
-      icon: <SiGithub className="text-4xl" />,
-      name: "Git/Github",
-    },
-    {
-      icon: <SiDocker className="text-4xl" />,
-      name: "Docker",
-    },
-    {
-      icon: <SiBetterauth className="text-4xl" />,
-      name: "Better Auth",
-    },
-    {
-      icon: <SiCloudflare className="text-4xl" />,
-      name: "Cloudflare",
-    },
-    {
-      icon: <FiTarget className="text-4xl" />,
-      name: "Problem Solving",
-    },
-    {
-      icon: <FaUsers className="text-4xl" />,
-      name: "Collaboration",
-    },
-  ];
-
+export default function Skills() {
   return (
-    <div id="skills" className="py-20 pb-0 px-4">
-      <div className="max-w-6xl mx-auto">
-        <motion.h1
-          initial="hidden"
-          whileInView="visible"
-          variants={slideInFromUp}
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-center text-3xl md:text-5xl font-bold text-ink mb-4"
-        >
-          My <span className="text-accent">Skills</span>
-        </motion.h1>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          variants={staggerContainer}
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 mt-16 mb-20"
-        >
-          {skills.map((skill, index) => (
-            <motion.div
-              key={index}
-              variants={scaleIn}
-              whileHover={{ scale: 1.1 }}
-              className="flex flex-col items-center text-center cursor-pointer"
-            >
-              <motion.div
-                className="text-accent mb-4"
-                whileHover={{ rotateY: 10 }}
-              >
-                {skill.icon}
-              </motion.div>
-              <p className="text-ink font-medium text-sm">{skill.name}</p>
-            </motion.div>
-          ))}
-        </motion.div>
+    <section
+      id="skills"
+      className="site-container py-16 md:py-24"
+      aria-labelledby="skills-heading"
+    >
+      <div className="section-intro">
+        <div>
+          <p className="eyebrow text-accent">04 / Tools & practice</p>
+          <h2 id="skills-heading" className="section-title">
+            The tools behind the work.
+          </h2>
+        </div>
+        <p>
+          Grouped by what I use them to build. These disciplines connect the
+          interface, the underlying system and its delivery.
+        </p>
       </div>
-    </div>
-  );
-};
 
-export default Skills;
+      <div className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-12">
+        {skillGroups.map((group, index) => (
+          <article
+            key={group.title}
+            className="border-t border-line py-7 md:py-8"
+            aria-labelledby={`skill-group-${index}`}
+          >
+            <p
+              className="font-mono text-[10px] text-accent"
+              aria-hidden="true"
+            >
+              {String(index + 1).padStart(2, "0")}
+            </p>
+            <h3
+              id={`skill-group-${index}`}
+              className="mt-3 text-xl font-semibold leading-[1.4] tracking-[-0.035em] text-ink"
+            >
+              {group.title}
+            </h3>
+            <p className="mt-3 max-w-[360px] text-[13px] leading-[1.85] text-muted">
+              {group.description}
+            </p>
+            <ul className="mt-5 space-y-2 text-[13px] leading-[1.7] text-ink">
+              {group.skills.map((skill) => (
+                <li key={skill}>{skill}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}

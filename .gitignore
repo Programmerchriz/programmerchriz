@@ -43,3 +43,8 @@ next-env.d.ts
 
 # text
 *.txt
+
+# priv docs
+other-imp-docs/
+output/
+PORTFOLIO-OVERVIEW.md

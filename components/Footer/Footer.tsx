@@ -1,67 +1,40 @@
-"use client";
-
 import Link from "next/link";
-import { FaFacebook, FaYoutube, FaInstagram, FaTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa";
+import { FiArrowUpRight, FiDownload } from "react-icons/fi";
+import { SITE } from "@/lib/site";
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <div
-      id="footer"
-      className="py-12 px-4 border-t border-line">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          <div>
-            <p className="text-muted text-center md:text-left">
-              Chris Nwachukwu
-            </p>
-          </div>
-
-          <div className="flex gap-4">
-            {/* <Link
-              href="#"
-              className="w-12 h-12 bg-raised hover:bg-surface-hover rounded-full flex items-center justify-center text-accent transition-all"
-            >
-              <FaFacebook className="text-lg" />
-            </Link>
-            <Link
-              href="#"
-              className="w-12 h-12 bg-raised hover:bg-surface-hover rounded-full flex items-center justify-center text-accent transition-all"
-            >
-              <FaYoutube className="text-lg" />
-            </Link>
-            <Link
-              href="#"
-              className="w-12 h-12 bg-raised hover:bg-surface-hover rounded-full flex items-center justify-center text-accent transition-all"
-            >
-              <FaInstagram className="text-lg" />
-            </Link> */}
-
-            <Link
-              href="https://x.com/Programmerchriz"
-              className="w-12 h-12 bg-raised hover:bg-surface-hover rounded-full flex items-center justify-center text-accent transition-all"
-              target="_blank"
-            >
-              <FaTwitter className="text-lg" />
-            </Link>
-            <Link
-              href="https://www.linkedin.com/in/christian-chukwuebuka-nwachukwu/"
-              className="w-12 h-12 bg-raised hover:bg-surface-hover rounded-full flex items-center justify-center text-accent transition-all"
-              target="_blank"
-            >
-              <FaLinkedinIn className="text-lg" />
-            </Link>
-            <Link
-              href="https://github.com/Programmerchriz"
-              className="w-12 h-12 bg-raised hover:bg-surface-hover rounded-full flex items-center justify-center text-accent transition-all"
-              target="_blank"
-            >
-              <FaGithub className="text-lg" />
-            </Link>
-          </div>
+    <footer id="footer" className="border-t border-line bg-surface">
+      <div className="site-container flex flex-col gap-7 py-9 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <Link href="/" className="inline-flex min-h-11 items-center text-sm font-semibold text-ink hover:text-accent">
+            {SITE.name}<span className="text-accent" aria-hidden="true">.</span>
+          </Link>
+          <p className="text-xs leading-6 text-muted">Software engineer · {SITE.location}</p>
         </div>
+        <nav aria-label="Profiles and CV" className="flex flex-wrap items-center gap-x-6 gap-y-1">
+          {SITE.profiles.map((profile) => (
+            <a
+              key={profile.label}
+              href={profile.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center gap-1.5 text-xs text-muted hover:text-accent"
+            >
+              {profile.label}
+              <FiArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+          ))}
+          <a
+            href="/pdf/Chris-Software-Engineer.pdf"
+            download="Chris-Nwachukwu-CV.pdf"
+            className="inline-flex min-h-11 items-center gap-1.5 text-xs text-muted hover:text-accent"
+          >
+            <FiDownload className="h-3.5 w-3.5" aria-hidden="true" /> Download CV
+          </a>
+        </nav>
       </div>
-    </div>
+    </footer>
   );
-};
-
-export default Footer;
+}

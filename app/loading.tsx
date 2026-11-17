@@ -1,21 +1,10 @@
-const Loading = () => {
+export default function Loading() {
   return (
-    <main id="main-content" tabIndex={-1} className="flex min-h-screen items-center justify-center bg-page px-5 text-ink">
-      <div className="flex flex-col items-center">
-        <div className="relative h-16 w-16">
-          <div className="absolute inset-0 rounded-full border-4 border-blue-900/50" />
-
-          <div className="absolute inset-0 animate-spin rounded-full border-4 border-transparent border-t-cyan-200" />
-
-          <div className="absolute inset-[10px] animate-pulse rounded-full bg-accent-soft" />
-        </div>
-
-        <p className="mt-6 text-sm font-medium tracking-wide text-muted">
-          Loading page...
-        </p>
+    <main id="main-content" tabIndex={-1} className="flex min-h-[65svh] items-center justify-center bg-page px-5 py-20 text-ink">
+      <div role="status" aria-live="polite" aria-atomic="true" className="flex flex-col items-center gap-5">
+        <div aria-hidden="true" className="h-10 w-10 rounded-full border-2 border-line border-t-accent motion-safe:animate-spin motion-reduce:animate-none" />
+        <p className="text-sm text-muted">Loading page…</p>
       </div>
     </main>
   );
-};
-
-export default Loading;
+}

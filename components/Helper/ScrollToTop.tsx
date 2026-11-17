@@ -1,44 +1,38 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { FaArrowUp } from "react-icons/fa";
+import { useSyncExternalStore } from "react";
+import { FiArrowUp } from "react-icons/fi";
 
-const ScrollToTop = () => {
-  const [isVisible, setIsVisible] = useState(false);
+function subscribe(onChange: () => void) {
+  window.addEventListener("scroll", onChange, { passive: true });
+  return () => window.removeEventListener("scroll", onChange);
+}
 
-  // Show and hide scroll to top button based on scroll position
-  useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.scrollY > 300) setIsVisible(true);
-      else setIsVisible(false);
-    };
+const getSnapshot = () => window.scrollY > 300;
+const getServerSnapshot = () => false;
 
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
+export default function ScrollToTop() {
+  const isVisible = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
-  }, []);
-
-  const scrollToTop = () => {
+  function scrollToTop() {
+    // Preserve a useful keyboard position when this control leaves the page.
+    document.getElementById("main-content")?.focus({ preventScroll: true });
     window.scrollTo({
       top: 0,
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
     });
-  };
+  }
+
+  if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-4 right-4">
-      {isVisible && (
-        <button
-          type="button"
-          aria-label="Scroll to top"
-          className="bg-surface border border-line cursor-pointer text-ink rounded-full w-12 h-12 flex items-center justify-center"
-          onClick={scrollToTop}
-        >
-          <FaArrowUp />
-        </button>
-      )}
-    </div>
+    <button
+      type="button"
+      aria-label="Back to top"
+      onClick={scrollToTop}
+      className="fixed right-[max(1rem,env(safe-area-inset-right))] bottom-[max(1rem,env(safe-area-inset-bottom))] z-40 flex h-12 w-12 items-center justify-center rounded-full border border-line bg-surface text-ink shadow-sm hover:border-accent hover:bg-raised hover:text-accent focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-accent"
+    >
+      <FiArrowUp className="h-5 w-5" aria-hidden="true" />
+    </button>
   );
-};
-
-export default ScrollToTop;
+}

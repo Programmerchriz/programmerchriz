@@ -9,7 +9,6 @@ import Skills from '../Skills/Skills';
 // import Reviews from '../Reviews/Reviews';
 import Contact from '../Contact/Contact';
 // import Blogs from '../Blogs/Blogs';
-import Footer from '../Footer/Footer';
 
 const Home = () => {
   return (
@@ -24,7 +23,6 @@ const Home = () => {
       {/* <Reviews /> */}
       {/* <Blogs /> */}
       <Contact />
-      <Footer />
     </main>
   )
 }

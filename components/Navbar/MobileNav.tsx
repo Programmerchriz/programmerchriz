@@ -36,6 +36,21 @@ export default function MobileNav({ showNav, closeNav, activeSection }: MobileNa
   return (
     <dialog ref={dialogRef} id="mobile-navigation" className="mobile-navigation"
       aria-labelledby="mobile-navigation-title" onCancel={closeNav}
+      onKeyDown={(event) => {
+        if (event.key !== "Tab") return;
+        const dialog = event.currentTarget;
+        const controls = Array.from(dialog.querySelectorAll<HTMLElement>("a[href], button:not(:disabled), [tabindex='0']"))
+          .filter((element) => element.getClientRects().length > 0);
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (event.shiftKey && (document.activeElement === first || document.activeElement === dialog)) {
+          event.preventDefault();
+          last?.focus();
+        } else if (!event.shiftKey && (document.activeElement === last || document.activeElement === dialog)) {
+          event.preventDefault();
+          first?.focus();
+        }
+      }}
       onClick={(event) => { if (event.target === event.currentTarget) closeNav(); }}>
       <div className="mobile-nav-panel">
         <div className="mobile-nav-heading">
