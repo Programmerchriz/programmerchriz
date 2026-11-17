@@ -5,6 +5,8 @@ import ReponsiveNav from "@/components/Navbar/ReponsiveNav";
 import ScrollToTop from "@/components/Helper/ScrollToTop";
 import MotionProvider from "@/components/Helper/MotionProvider";
 import { themeInitScript } from "@/lib/theme";
+import Footer from "@/components/Footer/Footer";
+import { SITE } from "@/lib/site";
 
 const fonts = Inter({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -12,73 +14,22 @@ const fonts = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.programmerchriz.xyz"),
-  title: "Chris Nwachukwu | Software Engineer & Fullstack Engineer",
-
-  description:
-    "Results-driven Software Engineer with over 4 years of experience building and shipping scalable full-stack web applications using TypeScript, React, Next.js, Node.js, Python, and FastAPI.",
-
-  keywords: [
-    "Software Engineer",
-    "Frontend Developer",
-    "Backend Developer",
-    "Fullstack Developer",
-    "React.js",
-    "Next.js",
-    "TypeScript",
-    "Node.js",
-    "Python",
-    "Web Developer",
-    "Portfolio",
-  ],
-
-  authors: [{ name: "Chris Nwachukwu" }],
-  creator: "Chris Nwachukwu",
-
+  metadataBase: new URL(SITE.url),
+  title: SITE.title,
+  description: SITE.description,
+  authors: [{ name: SITE.name }],
+  creator: SITE.name,
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://www.programmerchriz.xyz",
-    siteName: "Chris Nwachukwu - Software Engineer",
-
-    title: "Chris Nwachukwu | Software Engineer & Fullstack Engineer",
-    description:
-      "Results-driven Software Engineer with over 4 years of experience building and shipping scalable full-stack web applications using TypeScript, React, Next.js, Node.js, Python, and FastAPI.",
-
-    images: [
-      {
-        url: "/images/s1-og-premium-img.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Chris Nwachukwu - Software Engineer",
-        type: "image/jpeg",
-      },
-    ],
+    type: "website", locale: "en_US", siteName: SITE.name,
+    title: SITE.title, description: SITE.description,
+    images: [{ url: "/images/s1-og-premium-img.jpg", width: 1200, height: 630, alt: "Chris Nwachukwu — Software Engineer" }],
   },
-
   twitter: {
-    card: "summary_large_image",
-    title: "Chris Nwachukwu | Software Engineer & Fullstack Engineer",
-
-    description:
-      "Results-driven Software Engineer with over 4 years of experience building and shipping scalable full-stack web applications using TypeScript, React, Next.js, Node.js, Python, and FastAPI.",
+    card: "summary_large_image", title: SITE.title, description: SITE.description,
     creator: "@Programmerchriz",
-
-    images: [
-      {
-        url: "/images/s1-twitter-premium-img.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Chris Nwachukwu - Software Engineer",
-      },
-    ],
+    images: [{ url: "/images/s1-twitter-premium-img.jpg", width: 1200, height: 630, alt: "Chris Nwachukwu — Software Engineer" }],
   },
-
-  robots: {
-    index: true,
-    follow: true,
-  },
-
+  robots: { index: true, follow: true },
   icons: {
     icon: "/images/s1-thumbnail-premium-img.jpg",
     shortcut: "/images/s1-thumbnail-premium-img.jpg",
@@ -105,6 +56,7 @@ export default function RootLayout({
           <a href="#main-content" className="skip-link">Skip to content</a>
           <ReponsiveNav />
           {children}
+          <Footer />
           <ScrollToTop />
         </MotionProvider>
       </body>

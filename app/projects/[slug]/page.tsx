@@ -6,6 +6,7 @@ import ProjectGallery from "@/components/Projects/ProjectGallery";
 import ProjectLinks from "@/components/Projects/ProjectLinks";
 import { getProjectBySlug, getFeaturedProjects, projects } from "@/lib/data/projects";
 import { projectMetadata } from "@/lib/project-metadata";
+import { caseStudyStructuredData, jsonLd } from "@/lib/structured-data";
 
 interface ProjectDetailPageProps { params: Promise<{ slug: string }> }
 // This portfolio publishes only the projects declared in the content model.
@@ -22,6 +23,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
   const ordered = getFeaturedProjects();
   const nextProject = ordered[(ordered.findIndex(({ slug }) => slug === project.slug) + 1) % ordered.length];
   return <main id="main-content" tabIndex={-1} className="case-page site-container">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(caseStudyStructuredData(project)) }} />
     <Link href="/#projects" className="case-back"><FiArrowLeft aria-hidden="true" /> All projects</Link>
     <header className="case-introduction">
       <p className="eyebrow text-accent">Case study / {project.category}</p>

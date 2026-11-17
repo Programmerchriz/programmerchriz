@@ -2744,11 +2744,3 @@ I want users to be able to view their purchase history on their affiliate dashbo
 
 
 
-3. Step 3 — Remaining sections, final QA, and handoff
-   Complete the supporting content and verify the portfolio as a whole.
-   Work: Refine experience using the CV’s actual roles and dates: Apexbyte, September 2024–January 2025; Flip To Tech frontend role, August–September 2023; and junior role, March–August 2023. Connect responsibilities to supported outcomes.
-   Group skills by practical discipline without proficiency percentages. Refine contact, footer, social links, loading/404 pages, form labels/status feedback, and scroll-to-top accessibility. Preserve the Resend integration and existing PDF.
-   Complete page-specific titles, descriptions, canonical/Open Graph metadata, heading hierarchy, image sizing/loading, and justified structured data. Review every published claim for its source and status.
-   Validation: Run lint, TypeScript, and production build. Check representative mobile, tablet, laptop, and desktop widths; both themes; keyboard-only use; reduced motion; direct project navigation; CV download; and public/private repository states. Test contact success and failure using mocked delivery, without sending real email. Document any checks that cannot be completed.
-   Create PORTFOLIO-OVERVIEW.md covering the completed structure, design/theme systems, content editing, project ordering, repository visibility, photographs, CV behavior, build/deployment instructions, limitations, and future enhancements. Include a separately labeled two-to-four-bullet SwiftTopUp CV draft and an explanation of the revised professional positioning. Leave CV.txt and the downloadable PDF unchanged.
-   Completion gate: Deliver the finished implementation, check results, documentation, and remaining limitations.

@@ -1,64 +1,17 @@
 import { Resend } from "resend";
-import { NextRequest, NextResponse } from "next/server";
+import { createContactHandler } from "@/lib/contact";
 
-export async function POST(request: NextRequest) {
-  try {
-    const { name, email, mobileNumber, message } = await request.json();
-
-    // Validate required fields
-    if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: "Missing required fields" },
-        { status: 400 }
-      );
-    }
-
-    // Initialize at request time so builds and local previews need no mail credentials.
-    if (!process.env.RESEND_API_KEY) {
-      return NextResponse.json(
-        { error: "Contact form is temporarily unavailable. Please email me directly." },
-        { status: 503 }
-      );
-    }
-    const resend = new Resend(process.env.RESEND_API_KEY);
-
-    // Send email to you
-    const response = await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>", // Resend sandbox email (change after verifying domain)
-      to: "programmerchris6002@gmail.com", // YOUR email
-      subject: `New Contact Form Submission from ${name}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${mobileNumber || "Not provided"}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\\n/g, "<br>")}</p>
-      `,
-    });
-
-    // Optional: Send confirmation email to the visitor
-    await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>",
-      to: email,
-      subject: "We received your message!",
-      html: `
-        <h2>Thank you for reaching out!</h2>
-        <p>Hi ${name},</p>
-        <p>I've received your message and will get back to you soon.</p>
-        <p>Best regards,<br>Chris Nwachukwu</p>
-      `,
-    });
-
-    return NextResponse.json(
-      { success: true, message: "Email sent successfully" },
-      { status: 200 }
-    );
-  } catch (error) {
-    console.error("Email error:", error);
-    return NextResponse.json(
-      { error: "Failed to send email" },
-      { status: 500 }
-    );
-  }
-};
+export async function POST(request: Request) {
+  let client: Resend | undefined;
+  const handler = createContactHandler({
+    apiKey: () => process.env.RESEND_API_KEY,
+    from: process.env.CONTACT_FROM_EMAIL || "Contact Form <onboarding@resend.dev>",
+    // Preserve the existing delivery destination; deployments may override it.
+    to: process.env.CONTACT_TO_EMAIL || "programmerchris6002@gmail.com",
+    send: async (email) => {
+      client ??= new Resend(process.env.RESEND_API_KEY);
+      return client.emails.send(email);
+    },
+  });
+  return handler(request);
+}

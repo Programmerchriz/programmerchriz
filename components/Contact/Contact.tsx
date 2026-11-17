@@ -1,213 +1,88 @@
 "use client";
 
-import { FiPhone, FiMail, FiMapPin } from "react-icons/fi";
-// import { FaFacebook, FaYoutube, FaTwitter, FaInstagram } from "react-icons/fa";
-import { useState } from "react";
-import { motion } from "framer-motion";
-import {
-  slideInFromLeft,
-  slideInFromRight,
-  // slideInFromUp,
-} from "@/lib/animations";
+import { useRef, useState } from "react";
+import { FiArrowUpRight, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
+import { SITE } from "@/lib/site";
 
-const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    mobileNumber: "",
-    message: "",
-  });
-  const [isLoading, setIsLoading] = useState(false);
+const emptyForm = { name: "", email: "", mobileNumber: "", message: "" };
+
+export default function Contact() {
+  const [form, setForm] = useState(emptyForm);
+  const [sending, setSending] = useState(false);
+  const inFlight = useRef(false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
-  const [statusMessage, setStatusMessage] = useState("");
+  const [feedback, setFeedback] = useState("");
 
-  // Handle input changes
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  const change = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm((previous) => ({ ...previous, [event.target.name]: event.target.value }));
   };
 
-  // Handle form submission
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
+  const submit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (inFlight.current) return;
+    inFlight.current = true;
+    setSending(true);
     setStatus("idle");
-
+    setFeedback("Sending your message…");
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 15000);
     try {
       const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form),
+        signal: controller.signal,
       });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setStatus("success");
-        setStatusMessage(
-          "Message sent successfully! I'll get back to you soon.",
-        );
-        setFormData({
-          name: "",
-          email: "",
-          mobileNumber: "",
-          message: "",
-        });
-      } else {
+      const data = await response.json().catch(() => null);
+      if (!response.ok || data?.success !== true) {
         setStatus("error");
-        setStatusMessage(
-          data.error || "Failed to send message. Please try again.",
-        );
+        setFeedback(typeof data?.error === "string" ? data.error : "Your message could not be sent. Try again or email me directly.");
+      } else {
+        setStatus("success");
+        setFeedback("Your message has been sent. Thank you for getting in touch.");
+        setForm(emptyForm);
       }
-    } catch (error) {
+    } catch {
       setStatus("error");
-      setStatusMessage("An error occurred. Please try again.");
-      console.error("Error:", error);
+      setFeedback("Unable to connect. Your message is still here; try again or email me directly.");
     } finally {
-      setIsLoading(false);
+      window.clearTimeout(timeout);
+      inFlight.current = false;
+      setSending(false);
     }
   };
 
   return (
-    <div id="contact" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Left Side */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            variants={slideInFromLeft}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink mb-6">
-              Schedule a call with me to see if I can help
-            </h1>
-            <p className="text-muted mb-8 text-lg">
-              Reach out to me today and let&apos;s discuss how I can help you
-              achieve your goals.
-            </p>
-
-            <div className="space-y-6 mb-12">
-              <motion.div
-                className="flex items-center gap-4 text-accent"
-                whileHover={{ x: 10 }}
-              >
-                <FiPhone className="text-2xl" />
-                <span className="text-ink text-lg">+2348104948700</span>
-              </motion.div>
-              <motion.div
-                className="flex items-center gap-4 text-accent"
-                whileHover={{ x: 10 }}
-              >
-                <FiMail className="text-2xl" />
-                <span className="min-w-0 break-all text-ink text-lg">
-                  chrisnwachukwu107@gmail.com
-                </span>
-              </motion.div>
-              <motion.div
-                className="flex items-center gap-4 text-accent"
-                whileHover={{ x: 10 }}
-              >
-                <FiMapPin className="text-2xl" />
-                <span className="text-ink text-lg">Lagos, Nigeria</span>
-              </motion.div>
-            </div>
-          </motion.div>
-
-          {/* Right Side - Form */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            variants={slideInFromRight}
-            viewport={{ once: true, margin: "-100px" }}
-            className="bg-surface rounded-lg p-8"
-          >
-            {/* Status Messages */}
-            {status === "success" && (
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-6 p-4 bg-success-soft border border-success rounded-lg text-success"
-              >
-                {statusMessage}
-              </motion.div>
-            )}
-            {status === "error" && (
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-6 p-4 bg-error-soft border border-error rounded-lg text-error"
-              >
-                {statusMessage}
-              </motion.div>
-            )}
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <motion.input
-                type="text"
-                name="name"
-                placeholder="Name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                whileFocus={{ scale: 1.02 }}
-                className="w-full bg-accent-soft border border-line rounded-lg px-4 py-3 text-ink placeholder-subtle focus:outline-none focus:border-accent transition-colors disabled:opacity-50"
-                disabled={isLoading}
-              />
-              <motion.input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                whileFocus={{ scale: 1.02 }}
-                className="w-full bg-accent-soft border border-line rounded-lg px-4 py-3 text-ink placeholder-subtle focus:outline-none focus:border-accent transition-colors disabled:opacity-50"
-                disabled={isLoading}
-              />
-              <motion.input
-                type="tel"
-                name="mobileNumber"
-                placeholder="Mobile Number"
-                value={formData.mobileNumber}
-                onChange={handleChange}
-                whileFocus={{ scale: 1.02 }}
-                className="w-full bg-accent-soft border border-line rounded-lg px-4 py-3 text-ink placeholder-subtle focus:outline-none focus:border-accent transition-colors disabled:opacity-50"
-                disabled={isLoading}
-              />
-              <motion.textarea
-                name="message"
-                placeholder="Your Message"
-                rows={5}
-                value={formData.message}
-                onChange={handleChange}
-                required
-                whileFocus={{ scale: 1.02 }}
-                className="w-full bg-accent-soft border border-line rounded-lg px-4 py-3 text-ink placeholder-subtle focus:outline-none focus:border-accent transition-colors resize-none disabled:opacity-50"
-                disabled={isLoading}
-              ></motion.textarea>
-              <motion.button
-                type="submit"
-                disabled={isLoading}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full bg-action hover:bg-action-hover disabled:bg-action cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed text-on-action font-semibold py-3 px-6 rounded-full transition-colors"
-              >
-                {isLoading ? "Sending..." : "Send Message"}
-              </motion.button>
-            </form>
-          </motion.div>
-        </div>
+    <section id="contact" className="contact-section site-container" aria-labelledby="contact-heading">
+      <div className="contact-copy">
+        <p className="eyebrow text-accent">05 / Get in touch</p>
+        <h2 id="contact-heading" className="section-title">Let&apos;s build something useful.</h2>
+        <p>Have a role, a project or an engineering problem in mind? Tell me what you&apos;re working on.</p>
+        <address className="contact-address">
+          <a href={`mailto:${SITE.email}`}><FiMail aria-hidden="true" /><span>{SITE.email}</span><FiArrowUpRight aria-hidden="true" /></a>
+          <a href={`tel:${SITE.phone}`}><FiPhone aria-hidden="true" /><span>{SITE.phone}</span><FiArrowUpRight aria-hidden="true" /></a>
+          <p><FiMapPin aria-hidden="true" />{SITE.location}</p>
+        </address>
+        <p className="contact-note">Prefer email? The address above goes straight to your email app.</p>
       </div>
-    </div>
+      <form className="contact-form" onSubmit={submit} aria-labelledby="contact-form-heading" aria-busy={sending}>
+        <h3 id="contact-form-heading">Send a message</h3>
+        <p className="form-note">Name, email and message are required.</p>
+        <fieldset disabled={sending}>
+          <div className="contact-fields">
+            <div><label htmlFor="contact-name">Name</label><input id="contact-name" name="name" autoComplete="name" required maxLength={100} value={form.name} onChange={change} /></div>
+            <div><label htmlFor="contact-email">Email</label><input id="contact-email" name="email" type="email" autoComplete="email" required maxLength={254} value={form.email} onChange={change} /></div>
+          </div>
+          <label htmlFor="contact-phone">Phone <span>(optional)</span></label>
+          <input id="contact-phone" name="mobileNumber" type="tel" autoComplete="tel" maxLength={40} value={form.mobileNumber} onChange={change} />
+          <label htmlFor="contact-message">Message</label>
+          <textarea id="contact-message" name="message" rows={5} required maxLength={5000} aria-describedby="message-help" value={form.message} onChange={change} />
+          <p id="message-help" className="form-note">Up to 5,000 characters.</p>
+          <button type="submit" className="button button-primary">{sending ? "Sending…" : "Send message"}<FiArrowUpRight aria-hidden="true" /></button>
+        </fieldset>
+        <div className={`form-feedback form-feedback-${status}`}>
+          <p role="status" aria-live="polite" aria-atomic="true">{status !== "error" ? feedback : ""}</p>
+          <p role="alert" aria-atomic="true">{status === "error" ? feedback : ""}</p>
+        </div>
+      </form>
+    </section>
   );
-};
-
-export default Contact;
+}

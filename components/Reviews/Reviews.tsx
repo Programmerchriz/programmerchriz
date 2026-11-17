@@ -5,8 +5,6 @@ import { motion } from "framer-motion";
 import {
   slideInFromUp,
   staggerContainer,
-  slideInFromLeft,
-  slideInFromRight,
 } from "@/lib/animations";
 
 const Reviews = () => {
