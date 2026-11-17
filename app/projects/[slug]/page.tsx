@@ -66,24 +66,24 @@ const ProjectDetailPage = async ({
   const backendGithubUrl = project.githubUrl[1];
 
   return (
-    <main className="relative min-h-screen overflow-hidden pb-24 pt-[16vh] text-white">
-      <div className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-blue-900/20 blur-[140px]" />
+    <main id="main-content" tabIndex={-1} className="relative min-h-screen overflow-hidden pb-24 pt-16 text-ink">
+      <div className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-accent-soft blur-[140px]" />
 
       <div className="mx-auto w-[90%] max-w-6xl">
         <Link
           href="/#projects"
-          className="mb-10 inline-flex items-center gap-2 text-sm font-medium text-gray-400 transition-colors hover:text-cyan-200"
+          className="mb-10 inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-accent"
         >
           <FiArrowLeft className="h-4 w-4" />
           Back to projects
         </Link>
 
         <section className="mb-12">
-          <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-6xl">
             {project.title}
           </h1>
 
-          <p className="mt-6 max-w-3xl text-base leading-8 text-gray-400 sm:text-lg">
+          <p className="mt-6 max-w-3xl text-base leading-8 text-muted sm:text-lg">
             {project.shortDescription}
           </p>
 
@@ -92,7 +92,7 @@ const ProjectDetailPage = async ({
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-800 px-7 py-3.5 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-blue-900 hover:shadow-lg hover:shadow-blue-950/40 md:col-span-2 lg:col-span-1"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-action px-7 py-3.5 font-semibold text-on-action transition-all duration-300 hover:-translate-y-1 hover:bg-action-hover hover:shadow-lg hover:shadow-blue-950/40 md:col-span-2 lg:col-span-1"
             >
               <FiExternalLink className="h-5 w-5" />
               View live project
@@ -102,7 +102,7 @@ const ProjectDetailPage = async ({
               href={frontendGithubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-7 py-3.5 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:border-cyan-200/50 hover:bg-cyan-200/10 hover:text-cyan-200"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-line bg-surface px-7 py-3.5 font-semibold text-ink transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:bg-accent-soft hover:text-accent"
             >
               <FiGithub className="h-5 w-5" />
               Frontend repository
@@ -113,7 +113,7 @@ const ProjectDetailPage = async ({
                 href={backendGithubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-7 py-3.5 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:border-cyan-200/50 hover:bg-cyan-200/10 hover:text-cyan-200"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-line bg-surface px-7 py-3.5 font-semibold text-ink transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:bg-accent-soft hover:text-accent"
               >
                 <FiGithub className="h-5 w-5" />
                 Backend repository
@@ -131,32 +131,32 @@ const ProjectDetailPage = async ({
 
         <div className="grid gap-8 lg:grid-cols-[1.5fr_0.8fr]">
           <div className="space-y-8">
-            <section className="rounded-2xl border border-white/10 bg-gray-900/50 p-6 shadow-xl shadow-black/10 sm:p-8">
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
+            <section className="rounded-2xl border border-line bg-surface p-6 shadow-xl shadow-black/10 sm:p-8">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent">
                 Project overview
               </p>
 
-              <h2 className="text-2xl font-bold text-white sm:text-3xl">
+              <h2 className="text-2xl font-bold text-ink sm:text-3xl">
                 About the project
               </h2>
 
-              <p className="mt-5 leading-8 text-gray-400">
+              <p className="mt-5 leading-8 text-muted">
                 {project.description}
               </p>
             </section>
 
-            <section className="rounded-2xl border border-white/10 bg-gray-900/50 p-6 shadow-xl shadow-black/10 sm:p-8">
+            <section className="rounded-2xl border border-line bg-surface p-6 shadow-xl shadow-black/10 sm:p-8">
               <div className="mb-8 flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-200/10 text-cyan-200">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent-soft text-accent">
                   <FiCheck className="h-5 w-5" />
                 </div>
 
                 <div>
-                  <p className="text-sm font-medium text-cyan-200">
+                  <p className="text-sm font-medium text-accent">
                     Core functionality
                   </p>
 
-                  <h2 className="text-2xl font-bold text-white">
+                  <h2 className="text-2xl font-bold text-ink">
                     Project features
                   </h2>
                 </div>
@@ -166,13 +166,13 @@ const ProjectDetailPage = async ({
                 {project.features.map((feature) => (
                   <div
                     key={feature}
-                    className="flex items-start gap-3 rounded-xl border border-white/5 bg-blue-950/20 p-4"
+                    className="flex items-start gap-3 rounded-xl border border-line bg-raised p-4"
                   >
-                    <div className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-cyan-200/10 text-cyan-200">
+                    <div className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent">
                       <FiCheck className="h-3 w-3" />
                     </div>
 
-                    <p className="text-sm leading-6 text-gray-300">
+                    <p className="text-sm leading-6 text-muted">
                       {feature}
                     </p>
                   </div>
@@ -180,18 +180,18 @@ const ProjectDetailPage = async ({
               </div>
             </section>
 
-            <section className="rounded-2xl border border-white/10 bg-gray-900/50 p-6 shadow-xl shadow-black/10 sm:p-8">
+            <section className="rounded-2xl border border-line bg-surface p-6 shadow-xl shadow-black/10 sm:p-8">
               <div className="mb-8 flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-800/30 text-cyan-200">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent-soft text-accent">
                   <FiLayers className="h-5 w-5" />
                 </div>
 
                 <div>
-                  <p className="text-sm font-medium text-cyan-200">
+                  <p className="text-sm font-medium text-accent">
                     Engineering approach
                   </p>
 
-                  <h2 className="text-2xl font-bold text-white">
+                  <h2 className="text-2xl font-bold text-ink">
                     Architectural decisions
                   </h2>
                 </div>
@@ -202,19 +202,19 @@ const ProjectDetailPage = async ({
                   (decision, index) => (
                     <article
                       key={decision.title}
-                      className="rounded-xl border border-white/5 bg-blue-950/20 p-5"
+                      className="rounded-xl border border-line bg-raised p-5"
                     >
                       <div className="flex items-start gap-4">
-                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-800 text-sm font-bold text-white">
+                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-action text-sm font-bold text-on-action">
                           {index + 1}
                         </span>
 
                         <div>
-                          <h3 className="font-semibold text-white">
+                          <h3 className="font-semibold text-ink">
                             {decision.title}
                           </h3>
 
-                          <p className="mt-2 text-sm leading-6 text-gray-400">
+                          <p className="mt-2 text-sm leading-6 text-muted">
                             {decision.description}
                           </p>
                         </div>
@@ -226,12 +226,12 @@ const ProjectDetailPage = async ({
             </section>
           </div>
 
-          <aside className="h-fit rounded-2xl border border-white/10 bg-gray-900/50 p-6 shadow-xl shadow-black/10 lg:sticky lg:top-[15vh]">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
+          <aside className="h-fit rounded-2xl border border-line bg-surface p-6 shadow-xl shadow-black/10 lg:sticky lg:top-28">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
               Technologies
             </p>
 
-            <h2 className="mt-2 text-2xl font-bold text-white">
+            <h2 className="mt-2 text-2xl font-bold text-ink">
               Project stack
             </h2>
 
@@ -239,7 +239,7 @@ const ProjectDetailPage = async ({
               {project.technologies.map((technology) => (
                 <span
                   key={technology}
-                  className="rounded-lg border border-blue-800/50 bg-blue-900/30 px-3 py-2 text-sm text-gray-200"
+                  className="rounded-lg border border-line bg-accent-soft px-3 py-2 text-sm text-muted"
                 >
                   {technology}
                 </span>
@@ -253,7 +253,7 @@ const ProjectDetailPage = async ({
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex w-full items-center justify-between rounded-xl bg-blue-800 px-5 py-3.5 font-medium text-white transition-colors hover:bg-blue-900"
+                className="flex w-full items-center justify-between rounded-xl bg-action px-5 py-3.5 font-medium text-on-action transition-colors hover:bg-action-hover"
               >
                 Live application
                 <FiExternalLink className="h-4 w-4" />
@@ -263,7 +263,7 @@ const ProjectDetailPage = async ({
                 href={frontendGithubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex w-full items-center justify-between rounded-xl border border-white/10 bg-white/5 px-5 py-3.5 font-medium text-white transition-colors hover:border-cyan-200/40 hover:text-cyan-200"
+                className="flex w-full items-center justify-between rounded-xl border border-line bg-surface px-5 py-3.5 font-medium text-ink transition-colors hover:border-accent hover:text-accent"
               >
                 Frontend source code
                 <FiGithub className="h-4 w-4" />
@@ -274,7 +274,7 @@ const ProjectDetailPage = async ({
                   href={backendGithubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex w-full items-center justify-between rounded-xl border border-white/10 bg-white/5 px-5 py-3.5 font-medium text-white transition-colors hover:border-cyan-200/40 hover:text-cyan-200"
+                  className="flex w-full items-center justify-between rounded-xl border border-line bg-surface px-5 py-3.5 font-medium text-ink transition-colors hover:border-accent hover:text-accent"
                 >
                   Backend source code
                   <FiGithub className="h-4 w-4" />

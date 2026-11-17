@@ -86,37 +86,37 @@ const Contact = () => {
             variants={slideInFromLeft}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink mb-6">
               Schedule a call with me to see if I can help
             </h1>
-            <p className="text-gray-400 mb-8 text-lg">
+            <p className="text-muted mb-8 text-lg">
               Reach out to me today and let&apos;s discuss how I can help you
               achieve your goals.
             </p>
 
             <div className="space-y-6 mb-12">
               <motion.div
-                className="flex items-center gap-4 text-cyan-200"
+                className="flex items-center gap-4 text-accent"
                 whileHover={{ x: 10 }}
               >
                 <FiPhone className="text-2xl" />
-                <span className="text-white text-lg">+2348104948700</span>
+                <span className="text-ink text-lg">+2348104948700</span>
               </motion.div>
               <motion.div
-                className="flex items-center gap-4 text-cyan-200"
+                className="flex items-center gap-4 text-accent"
                 whileHover={{ x: 10 }}
               >
                 <FiMail className="text-2xl" />
-                <span className="text-white text-lg">
+                <span className="min-w-0 break-all text-ink text-lg">
                   chrisnwachukwu107@gmail.com
                 </span>
               </motion.div>
               <motion.div
-                className="flex items-center gap-4 text-cyan-200"
+                className="flex items-center gap-4 text-accent"
                 whileHover={{ x: 10 }}
               >
                 <FiMapPin className="text-2xl" />
-                <span className="text-white text-lg">Lagos, Nigeria</span>
+                <span className="text-ink text-lg">Lagos, Nigeria</span>
               </motion.div>
             </div>
           </motion.div>
@@ -127,14 +127,14 @@ const Contact = () => {
             whileInView="visible"
             variants={slideInFromRight}
             viewport={{ once: true, margin: "-100px" }}
-            className="bg-gray-900/50 rounded-lg p-8"
+            className="bg-surface rounded-lg p-8"
           >
             {/* Status Messages */}
             {status === "success" && (
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mb-6 p-4 bg-green-900/30 border border-green-500 rounded-lg text-green-400"
+                className="mb-6 p-4 bg-success-soft border border-success rounded-lg text-success"
               >
                 {statusMessage}
               </motion.div>
@@ -143,7 +143,7 @@ const Contact = () => {
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mb-6 p-4 bg-red-900/30 border border-red-500 rounded-lg text-red-400"
+                className="mb-6 p-4 bg-error-soft border border-error rounded-lg text-error"
               >
                 {statusMessage}
               </motion.div>
@@ -158,7 +158,7 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 whileFocus={{ scale: 1.02 }}
-                className="w-full bg-blue-900/30 border border-blue-800 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-200 transition-colors disabled:opacity-50"
+                className="w-full bg-accent-soft border border-line rounded-lg px-4 py-3 text-ink placeholder-subtle focus:outline-none focus:border-accent transition-colors disabled:opacity-50"
                 disabled={isLoading}
               />
               <motion.input
@@ -169,7 +169,7 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 whileFocus={{ scale: 1.02 }}
-                className="w-full bg-blue-900/30 border border-blue-800 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-200 transition-colors disabled:opacity-50"
+                className="w-full bg-accent-soft border border-line rounded-lg px-4 py-3 text-ink placeholder-subtle focus:outline-none focus:border-accent transition-colors disabled:opacity-50"
                 disabled={isLoading}
               />
               <motion.input
@@ -179,7 +179,7 @@ const Contact = () => {
                 value={formData.mobileNumber}
                 onChange={handleChange}
                 whileFocus={{ scale: 1.02 }}
-                className="w-full bg-blue-900/30 border border-blue-800 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-200 transition-colors disabled:opacity-50"
+                className="w-full bg-accent-soft border border-line rounded-lg px-4 py-3 text-ink placeholder-subtle focus:outline-none focus:border-accent transition-colors disabled:opacity-50"
                 disabled={isLoading}
               />
               <motion.textarea
@@ -190,7 +190,7 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 whileFocus={{ scale: 1.02 }}
-                className="w-full bg-blue-900/30 border border-blue-800 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-200 transition-colors resize-none disabled:opacity-50"
+                className="w-full bg-accent-soft border border-line rounded-lg px-4 py-3 text-ink placeholder-subtle focus:outline-none focus:border-accent transition-colors resize-none disabled:opacity-50"
                 disabled={isLoading}
               ></motion.textarea>
               <motion.button
@@ -198,7 +198,7 @@ const Contact = () => {
                 disabled={isLoading}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full bg-blue-800 hover:bg-blue-900 disabled:bg-blue-800 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-full transition-colors"
+                className="w-full bg-action hover:bg-action-hover disabled:bg-action cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed text-on-action font-semibold py-3 px-6 rounded-full transition-colors"
               >
                 {isLoading ? "Sending..." : "Send Message"}
               </motion.button>

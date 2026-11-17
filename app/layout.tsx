@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ReponsiveNav from "@/components/Navbar/ReponsiveNav";
 import ScrollToTop from "@/components/Helper/ScrollToTop";
+import MotionProvider from "@/components/Helper/MotionProvider";
+import { themeInitScript } from "@/lib/theme";
 
 const fonts = Inter({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -92,12 +94,19 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fonts.className} h-full antialiased bg-[#0d0d1f] text-white overflow-x-hidden`}
+      suppressHydrationWarning
+      className={`${fonts.className} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col overflow-x-hidden">
-        <ReponsiveNav />
-        {children}
-        <ScrollToTop />
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body className="min-h-full flex flex-col">
+        <MotionProvider>
+          <a href="#main-content" className="skip-link">Skip to content</a>
+          <ReponsiveNav />
+          {children}
+          <ScrollToTop />
+        </MotionProvider>
       </body>
     </html>
   );

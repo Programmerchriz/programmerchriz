@@ -17,22 +17,22 @@ const WorkCard: React.FC<WorkCardProps> = ({
 }) => {
   return (
     <div className="flex gap-4">
-      <div className="flex-shrink-0 text-cyan-200 mt-1">{icon}</div>
+      <div className="flex-shrink-0 text-accent mt-1">{icon}</div>
       <div>
         <div className="flex items-center gap-2 mb-2">
           {period && (
-            <span className="text-sm text-cyan-200 bg-blue-900/30 px-3 py-1 rounded-full">
+            <span className="text-sm text-accent bg-accent-soft px-3 py-1 rounded-full">
               {period}
             </span>
           )}
           {company && (
-            <span className="text-sm font-semibold text-gray-300">
+            <span className="text-sm font-semibold text-muted">
               {company}
             </span>
           )}
         </div>
-        <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-        <p className="text-gray-400 text-sm">{description}</p>
+        <h3 className="text-xl font-bold text-ink mb-2">{title}</h3>
+        <p className="text-muted text-sm">{description}</p>
       </div>
     </div>
   );

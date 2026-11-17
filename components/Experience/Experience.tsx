@@ -64,9 +64,9 @@ const Experience = () => {
               whileInView="visible"
               variants={slideInFromUp}
               viewport={{ once: true, margin: "-100px" }}
-              className="text-3xl md:text-4xl font-bold text-center text-white mb-12"
+              className="text-3xl md:text-4xl font-bold text-center text-ink mb-12"
             >
-              My Work <span className="text-cyan-200">Experience</span>
+              My Work <span className="text-accent">Experience</span>
             </motion.h2>
             <motion.div
               initial="hidden"

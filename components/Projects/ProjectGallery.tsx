@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
+import useReducedMotion from "@/components/Helper/useReducedMotion";
 
 interface ProjectGalleryProps {
   images: string[];
@@ -13,9 +14,10 @@ interface ProjectGalleryProps {
 const ProjectGallery = ({ images, title }: ProjectGalleryProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [direction, setDirection] = useState(1);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
-    if (images.length <= 1) {
+    if (reducedMotion || images.length <= 1) {
       return;
     }
 
@@ -29,7 +31,7 @@ const ProjectGallery = ({ images, title }: ProjectGalleryProps) => {
     return () => {
       window.clearInterval(intervalId);
     };
-  }, [images.length]);
+  }, [images.length, reducedMotion]);
 
   const showPreviousImage = () => {
     setDirection(-1);
@@ -51,7 +53,7 @@ const ProjectGallery = ({ images, title }: ProjectGalleryProps) => {
   };
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gray-950 shadow-2xl shadow-black/30">
+    <div className="relative overflow-hidden rounded-2xl border border-line bg-raised shadow-2xl shadow-black/30">
       <div className="relative aspect-video overflow-hidden">
         <AnimatePresence initial={false} custom={direction} mode="popLayout">
           <motion.div
@@ -91,7 +93,7 @@ const ProjectGallery = ({ images, title }: ProjectGalleryProps) => {
           </motion.div>
         </AnimatePresence>
 
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0d0d1f]/50 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
 
         {images.length > 1 && (
           <>
@@ -99,7 +101,7 @@ const ProjectGallery = ({ images, title }: ProjectGalleryProps) => {
               type="button"
               onClick={showPreviousImage}
               aria-label="Show previous screenshot"
-              className="absolute left-4 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-black/50 text-white backdrop-blur-md transition-all hover:border-cyan-200 hover:bg-black/70 hover:text-cyan-200"
+              className="absolute left-4 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-black/50 text-on-action backdrop-blur-md transition-all hover:border-accent hover:bg-black/70 hover:text-accent"
             >
               <HiChevronLeft className="h-6 w-6" />
             </button>
@@ -108,12 +110,12 @@ const ProjectGallery = ({ images, title }: ProjectGalleryProps) => {
               type="button"
               onClick={showNextImage}
               aria-label="Show next screenshot"
-              className="absolute right-4 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-black/50 text-white backdrop-blur-md transition-all hover:border-cyan-200 hover:bg-black/70 hover:text-cyan-200"
+              className="absolute right-4 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-black/50 text-on-action backdrop-blur-md transition-all hover:border-accent hover:bg-black/70 hover:text-accent"
             >
               <HiChevronRight className="h-6 w-6" />
             </button>
 
-            <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/10 bg-black/40 px-3 py-2 backdrop-blur-md">
+            <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2 rounded-full border border-line bg-black/40 px-3 py-2 backdrop-blur-md">
               {images.map((image, imageIndex) => (
                 <button
                   key={image}
