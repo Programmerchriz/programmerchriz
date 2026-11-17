@@ -59,7 +59,7 @@ export default function Contact() {
         <address className="contact-address">
           <a href={`mailto:${SITE.email}`}><FiMail aria-hidden="true" /><span>{SITE.email}</span><FiArrowUpRight aria-hidden="true" /></a>
           <a href={`tel:${SITE.phone}`}><FiPhone aria-hidden="true" /><span>{SITE.phone}</span><FiArrowUpRight aria-hidden="true" /></a>
-          <p><FiMapPin aria-hidden="true" />{SITE.location}</p>
+          {/* <p><FiMapPin aria-hidden="true" />{SITE.location}</p> */}
         </address>
         <p className="contact-note">Prefer email? The address above goes straight to your email app.</p>
       </div>

@@ -10,7 +10,7 @@ export default function Footer() {
           <Link href="/" className="inline-flex min-h-11 items-center text-sm font-semibold text-ink hover:text-accent">
             {SITE.name}<span className="text-accent" aria-hidden="true">.</span>
           </Link>
-          <p className="text-xs leading-6 text-muted">Software engineer · {SITE.location}</p>
+          <p className="text-xs leading-6 text-muted">Software engineer · </p>
         </div>
         <nav aria-label="Profiles and CV" className="flex flex-wrap items-center gap-x-6 gap-y-1">
           {SITE.profiles.map((profile) => (
