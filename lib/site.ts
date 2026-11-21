@@ -7,8 +7,8 @@ export const SITE = {
   phone: "+2348104948700",
   location: "Lagos, Nigeria",
   profiles: [
-    { label: "GitHub", url: "https://github.com/Programmerchriz" },
-    { label: "LinkedIn", url: "https://www.linkedin.com/in/christian-chukwuebuka-nwachukwu/" },
-    { label: "X", url: "https://x.com/Programmerchriz" },
+    { label: "GitHub", url: "https://github.com/programmerchriz" },
+    { label: "LinkedIn", url: "https://www.linkedin.com/in/programmerchriz" },
+    { label: "X", url: "https://x.com/programmerchriz" },
   ],
 } as const;
